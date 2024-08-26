@@ -55,6 +55,11 @@ body {
   color: white;
 }
 
+.profile__bio-button {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+}
+
 .profile__bio-button_image {
   width: 24px;
   height: 24px;
