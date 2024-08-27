@@ -176,7 +176,6 @@
   height: 22px;
 }
 
-
 @media (max-width: 890px) {
   .profile__avatar {
     width: 120px;
@@ -232,7 +231,7 @@
     font-size: 1.37rem;
     font-weight: 500;
     line-height: 1.21;
-    margin: 30px 10px 14px 0;
+    margin: 30px 5px 14px 0;
     color: white;
   }
 
