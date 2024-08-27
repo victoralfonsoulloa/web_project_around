@@ -74,6 +74,7 @@ body {
 .profile__bio_modal-container {
   display: flex;
   background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -92,7 +93,7 @@ body {
 
 .profile__bio_form {
   position: relative;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 1);
   display: flex;
   flex-direction: column;
   width: 430px;
@@ -239,8 +240,25 @@ body {
 }
 
 .card__caption_like {
+  border: none;
+  background-color: transparent;
+}
+
+.card__caption_like:hover {
+  cursor: pointer;
+  opacity: 60%;
+}
+
+.card__caption-like_icon {
   width: 21px;
   height: 19px;
+}
+
+.card__caption-like_icon:active {
+  background-image: url(/images/like-button_active.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .footer {
