@@ -42,7 +42,7 @@
 }
 
 .card__caption-like_icon:active {
-  background-image: url(/images/like-button_active.png);
+  background-image: url(../images/like-button_active.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
