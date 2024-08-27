@@ -33,13 +33,51 @@
             <div class="profile__bio">
               <div class="profile__bio_container">
                 <h1 class="profile__bio_name">Victor Ulloa</h1>
-                <button class="profile__bio-button">
+                <button
+                  class="profile__bio-button--open"
+                  id="profile__bio-button--open"
+                >
                   <img
                     src="images/edit-button.png"
                     alt="Edit button"
                     class="profile__bio-button_image"
                   />
                 </button>
+
+                <div
+                  class="profile__bio_modal-container"
+                  id="profile__bio_modal-container"
+                >
+                  <form class="profile__bio_form">
+                    <h2 class="profile__bio_form-title">Edit profile</h2>
+                    <input
+                      type="text"
+                      placeholder="Name"
+                      class="profile__bio_form-input profile__bio_form_input-name"
+                      id="name"
+                    />
+                    <input
+                      type="text"
+                      placeholder="About me"
+                      class="profile__bio_form-input"
+                      id="aboutme"
+                    />
+                    <button type="submit" class="profile__bio-button--save">
+                      Save
+                    </button>
+
+                    <button
+                      class="profile__bio-button--close"
+                      id="profile__bio-button--close"
+                    >
+                      <img
+                        src="images/close-button.png"
+                        alt="button-close_icon"
+                        class="profile__bio-button--close-icon"
+                      />
+                    </button>
+                  </form>
+                </div>
               </div>
               <h2 class="profile__bio_description">Explorer</h2>
             </div>
@@ -149,5 +187,6 @@
         <p class="footer__copyright">© 2021 Around The U.S.</p>
       </footer>
     </div>
+    <script src="app.js"></script>
   </body>
 </html>

@@ -55,15 +55,102 @@ body {
   color: white;
 }
 
-.profile__bio-button {
+.profile__bio-button--open {
   background-color: rgba(0, 0, 0, 0.5);
   border: none;
+  cursor: pointer;
 }
 
 .profile__bio-button_image {
   width: 24px;
   height: 24px;
   vertical-align: baseline;
+}
+
+.profile__bio_modal-container {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  pointer-events: none;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.profile__bio_modal-container--show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.profile__bio_form {
+  position: relative;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 430px;
+  padding: 36px;
+  border-radius: 10px;
+  border-bottom: 4px solid black;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.profile__bio_form-title {
+  font-family: Inter;
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1.21;
+  margin: 0;
+  margin-bottom: 54px;
+}
+
+.profile__bio_form-input {
+  height: 28px;
+  border: none;
+  border-bottom: 1px solid #c4c4c4;
+  font-family: Inter;
+  font-size: 0.87rem;
+  font-weight: 400;
+  line-height: 1.21;
+  color: #c4c4c4;
+}
+
+.profile__bio_form_input-name {
+  margin-bottom: 30px;
+}
+
+.profile__bio-button--save {
+  height: 50px;
+  background-color: black;
+  font-family: Inter;
+  font-size: 1.12rem;
+  font-weight: 400;
+  line-height: 1.21;
+  color: #ffffff;
+  margin-top: 48px;
+}
+
+.profile__bio-button--save:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.profile__bio-button--close {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.profile__bio-button--close-icon {
+  width: 40px;
+  height: 40px;
 }
 
 .profile__bio_description {
