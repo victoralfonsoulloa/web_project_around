@@ -16,7 +16,7 @@ if (document.querySelector(".profile__bio_form-input").value === "") {
   saveButton.setAttribute("disabled", true);
 }
 
-const saveButton2 = document.querySelector(".save-button");
+const saveButton2 = document.querySelector(".profile__bio-button--save");
 const inputFieldName = document.querySelector("#name");
 const inputFieldAboutMe = document.querySelector("#aboutMe");
 
