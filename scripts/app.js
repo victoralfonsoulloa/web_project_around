@@ -11,6 +11,7 @@ let bioDescription = document.querySelector(
 const form = document.querySelector(".profile__bio_form");
 const savedName = document.querySelector(".profile__bio_name");
 const savedAboutMe = document.querySelector(".profile__bio_description");
+const cardsContainer = document.querySelector(".cards");
 
 open.addEventListener("click", () => {
   modalContainer.classList.add("profile__bio_modal-container--show");
@@ -46,3 +47,43 @@ form.addEventListener("submit", function (event) {
 
   modalContainer.classList.remove("profile__bio_modal-container--show");
 });
+
+function addCard(cardTitle, cardImage) {
+  const cardTemplate = document.querySelector("#card-template").content;
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  cardElement.querySelector(".card__caption_title").textContent = cardTitle;
+  cardElement.querySelector(".card__image").src = cardImage;
+  cardElement.querySelector(".card__image").alt = cardTitle;
+  cardsContainer.append(cardElement);
+}
+
+const initialCards = [
+  {
+    name: "Yosemite Valley",
+    link: "images/yosemite-image.png",
+  },
+  {
+    name: "Lake Louise",
+    link: "images/louise-image.png",
+  },
+  {
+    name: "Bald Mountain",
+    link: "images/montanas-image.png",
+  },
+  {
+    name: "Latemar",
+    link: "images/latemar-image.png",
+  },
+  {
+    name: "Vanois Park",
+    link: "images/vanois-image.png",
+  },
+  {
+    name: "Lago di Braies",
+    link: "images/lagos-image.png",
+  },
+];
+
+for (const item of initialCards) {
+  addCard(item.name, item.link);
+}
