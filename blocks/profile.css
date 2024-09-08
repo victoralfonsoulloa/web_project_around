@@ -47,6 +47,7 @@
 .profile__bio_modal-container {
   display: flex;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
   backdrop-filter: blur(3px);
   align-items: center;
   justify-content: center;

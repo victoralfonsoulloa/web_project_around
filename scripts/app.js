@@ -11,6 +11,7 @@ const buttons = {
   closeAdd: document.querySelector("#profile__bio-button--close-add"),
   save: document.querySelector(".profile__bio-button--save"),
   create: document.querySelector("#profile__bio-button--create"),
+  delete: document.querySelector("card__delete-image"),
 };
 
 // Input Fields
@@ -23,7 +24,9 @@ const inputFields = {
 
 // Profile Elements
 let bioName = document.querySelector(".profile__bio_name").innerHTML;
-let bioDescription = document.querySelector(".profile__bio_description").innerHTML;
+let bioDescription = document.querySelector(
+  ".profile__bio_description"
+).innerHTML;
 const savedName = document.querySelector(".profile__bio_name");
 const savedAboutMe = document.querySelector(".profile__bio_description");
 
@@ -44,7 +47,7 @@ function toggleModal(modal, isOpen) {
 }
 
 function toggleButtonState(button, fields) {
-  const isDisabled = fields.some(field => field.value === "");
+  const isDisabled = fields.some((field) => field.value === "");
   button.disabled = isDisabled;
 }
 
@@ -76,17 +79,31 @@ const initialCards = [
   { name: "Lago di Braies", link: "images/lagos-image.png" },
 ];
 
-initialCards.forEach(item => cardManager.addCard(item.name, item.link));
+initialCards.forEach((item) => cardManager.addCard(item.name, item.link));
 
 // Event Listeners
-buttons.openEdit.addEventListener("click", () => toggleModal(modals.edit, true));
-buttons.closeEdit.addEventListener("click", () => toggleModal(modals.edit, false));
-buttons.closeAdd.addEventListener("click", () => toggleModal(modals.add, false));
+buttons.openEdit.addEventListener("click", () =>
+  toggleModal(modals.edit, true)
+);
+buttons.closeEdit.addEventListener("click", () =>
+  toggleModal(modals.edit, false)
+);
+buttons.closeAdd.addEventListener("click", () =>
+  toggleModal(modals.add, false)
+);
 
-inputFields.name.addEventListener("input", () => toggleButtonState(buttons.save, [inputFields.name, inputFields.aboutMe]));
-inputFields.aboutMe.addEventListener("input", () => toggleButtonState(buttons.save, [inputFields.name, inputFields.aboutMe]));
-inputFields.title.addEventListener("input", () => toggleButtonState(buttons.create, [inputFields.title, inputFields.image]));
-inputFields.image.addEventListener("input", () => toggleButtonState(buttons.create, [inputFields.title, inputFields.image]));
+inputFields.name.addEventListener("input", () =>
+  toggleButtonState(buttons.save, [inputFields.name, inputFields.aboutMe])
+);
+inputFields.aboutMe.addEventListener("input", () =>
+  toggleButtonState(buttons.save, [inputFields.name, inputFields.aboutMe])
+);
+inputFields.title.addEventListener("input", () =>
+  toggleButtonState(buttons.create, [inputFields.title, inputFields.image])
+);
+inputFields.image.addEventListener("input", () =>
+  toggleButtonState(buttons.create, [inputFields.title, inputFields.image])
+);
 
 // Initialize Input Fields with Saved Data
 inputFields.name.value = bioName;
@@ -94,7 +111,7 @@ inputFields.aboutMe.value = bioDescription;
 
 // Form Submission Handlers
 function handleFormSubmit(form, callback) {
-  form.addEventListener("submit", function(event) {
+  form.addEventListener("submit", function (event) {
     event.preventDefault();
     callback();
   });
@@ -116,9 +133,21 @@ buttons.openEdit.addEventListener("click", () => {
   inputFields.aboutMe.value = bioDescription;
 });
 
-buttons.openCardForm = document.querySelector(".profile__bio_add").addEventListener("click", () => {
-  toggleModal(modals.add, true);
-  inputFields.title.value = "";
-  inputFields.image.value = "";
-  toggleButtonState(buttons.create, [inputFields.title, inputFields.image]);
+buttons.openCardForm = document
+  .querySelector(".profile__bio_add")
+  .addEventListener("click", () => {
+    toggleModal(modals.add, true);
+    inputFields.title.value = "";
+    inputFields.image.value = "";
+    toggleButtonState(buttons.create, [inputFields.title, inputFields.image]);
+  });
+
+cardsContainer.addEventListener("click", function (event) {
+  // Check if the clicked element is the delete button or its child (like the icon image)
+  if (event.target.closest(".card__delete-image")) {
+    const cardElement = event.target.closest(".card");
+
+    // Remove the card (delete it from the DOM)
+    cardElement.remove();
+  }
 });
