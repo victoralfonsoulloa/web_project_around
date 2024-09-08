@@ -50,7 +50,7 @@
 
                 <div
                   class="profile__bio_modal-container"
-                  id="profile__bio_modal-container"
+                  id="profile__bio_modal-container--edit"
                 >
                   <form class="profile__bio_form">
                     <h2 class="profile__bio_form-title">Edit profile</h2>
@@ -93,6 +93,45 @@
               class="profile__bio_add_button"
             />
           </button>
+          <div
+            class="profile__bio_modal-container profile__bio_modal-container-add"
+            id="profile__bio_modal-container-add"
+          >
+            <form class="profile__bio_form profile__bio_form2">
+              <h2 class="profile__bio_form-title">New Place</h2>
+              <input
+                type="text"
+                placeholder="Title"
+                class="profile__bio_form-input profile__bio_form_input-name"
+                id="title"
+              />
+              <input
+                type="text"
+                placeholder="Image URL"
+                class="profile__bio_form-input"
+                id="imageUrl"
+              />
+              <button
+                type="submit"
+                class="profile__bio-button--save profile__bio-button--create"
+                id="profile__bio-button--create"
+              >
+                Create
+              </button>
+
+              <button
+                type="button"
+                class="profile__bio-button--close"
+                id="profile__bio-button--close-add"
+              >
+                <img
+                  src="images/close-button.png"
+                  alt="button-close_icon"
+                  class="profile__bio-button--close-icon"
+                />
+              </button>
+            </form>
+          </div>
         </section>
         <section class="cards"></section>
       </main>
