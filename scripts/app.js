@@ -150,4 +150,24 @@ cardsContainer.addEventListener("click", function (event) {
     // Remove the card (delete it from the DOM)
     cardElement.remove();
   }
+
+  // Check if the clicked element is the like button or its child
+  if (event.target.closest(".card__caption-like_icon")) {
+    // Find the closest card element to ensure correct context
+    const cardElement = event.target.closest(".card");
+
+    // Find the like button icon within this specific card
+    const likeButtonIcon = cardElement.querySelector(
+      ".card__caption-like_icon"
+    );
+
+    // Toggle the src attribute between the "like" and "unlike" images
+    if (likeButtonIcon.src.includes("like-button_active.png")) {
+      // If currently liked, unlike it
+      likeButtonIcon.src = "images/like-button.png";
+    } else {
+      // If currently unliked, like it
+      likeButtonIcon.src = "images/like-button_active.png";
+    }
+  }
 });
