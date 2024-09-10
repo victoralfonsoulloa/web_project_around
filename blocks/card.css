@@ -15,6 +15,10 @@
   object-position: center;
 }
 
+.card__image {
+  cursor: pointer;
+}
+
 .card__delete-image {
   background: none;
   border: none;
@@ -32,6 +36,7 @@
 
 .card__delete-image-icon:hover {
   opacity: 60%;
+  transform: scale(1.1);
 }
 
 .card__caption {
@@ -62,6 +67,7 @@
 .card__caption_like:hover {
   cursor: pointer;
   opacity: 60%;
+  transform: scale(1.1);
 }
 
 .card__caption-like_icon {

@@ -65,6 +65,30 @@
   opacity: 1;
 }
 
+.profile__bio_modal-container_img-content {
+  position: relative;
+}
+
+.profile__bio_modal-container-picture{
+  max-width: 75vw;
+  max-height: 75vh;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.profile__bio_modal-container-caption {
+  position: absolute;
+  left: 0;
+  bottom: -50px;
+  background-color: white;
+  padding: 5px 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: Inter;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.14;
+}
+
 .profile__bio_form {
   position: relative;
   background-color: rgba(255, 255, 255, 1);

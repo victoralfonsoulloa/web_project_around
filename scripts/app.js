@@ -2,6 +2,7 @@
 const modals = {
   edit: document.querySelector("#profile__bio_modal-container--edit"),
   add: document.querySelector("#profile__bio_modal-container-add"),
+  image: document.querySelector("#profile__bio_modal-container_img"),
 };
 
 // Button Elements
@@ -11,6 +12,7 @@ const buttons = {
   closeAdd: document.querySelector("#profile__bio-button--close-add"),
   save: document.querySelector(".profile__bio-button--save"),
   create: document.querySelector("#profile__bio-button--create"),
+  closeImage: document.querySelector("#profile__bio-button--close-img"),
   delete: document.querySelector("card__delete-image"),
 };
 
@@ -24,9 +26,7 @@ const inputFields = {
 
 // Profile Elements
 let bioName = document.querySelector(".profile__bio_name").innerHTML;
-let bioDescription = document.querySelector(
-  ".profile__bio_description"
-).innerHTML;
+let bioDescription = document.querySelector(".profile__bio_description").innerHTML;
 const savedName = document.querySelector(".profile__bio_name");
 const savedAboutMe = document.querySelector(".profile__bio_description");
 
@@ -37,13 +37,23 @@ const formAdd = document.querySelector(".profile__bio_form2");
 // Cards Container
 const cardsContainer = document.querySelector(".cards");
 
+// Modal Image Elements
+const modalImage = modals.image.querySelector(".profile__bio_modal-container-picture");
+const modalCaption = modals.image.querySelector(".profile__bio_modal-container-caption");
+
+// Initial Cards Data
+const initialCards = [
+  { name: "Yosemite Valley", link: "images/yosemite-image.png" },
+  { name: "Lake Louise", link: "images/louise-image.png" },
+  { name: "Bald Mountain", link: "images/montanas-image.png" },
+  { name: "Latemar", link: "images/latemar-image.png" },
+  { name: "Vanois Park", link: "images/vanois-image.png" },
+  { name: "Lago di Braies", link: "images/lagos-image.png" },
+];
+
 // Utility Functions
 function toggleModal(modal, isOpen) {
-  if (isOpen) {
-    modal.classList.add("profile__bio_modal-container--show");
-  } else {
-    modal.classList.remove("profile__bio_modal-container--show");
-  }
+  modal.classList.toggle("profile__bio_modal-container--show", isOpen);
 }
 
 function toggleButtonState(button, fields) {
@@ -60,54 +70,41 @@ class CardManager {
   addCard(title, imageUrl) {
     const cardTemplate = document.querySelector("#card-template").content;
     const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+    const imageElement = cardElement.querySelector(".card__image");
+
     cardElement.querySelector(".card__caption_title").textContent = title;
-    cardElement.querySelector(".card__image").src = imageUrl;
-    cardElement.querySelector(".card__image").alt = title;
+    imageElement.src = imageUrl;
+    imageElement.alt = title;
+    imageElement.setAttribute("data-caption", title);
     this.container.append(cardElement);
   }
 }
 
 const cardManager = new CardManager(cardsContainer);
 
-// Initial Cards
-const initialCards = [
-  { name: "Yosemite Valley", link: "images/yosemite-image.png" },
-  { name: "Lake Louise", link: "images/louise-image.png" },
-  { name: "Bald Mountain", link: "images/montanas-image.png" },
-  { name: "Latemar", link: "images/latemar-image.png" },
-  { name: "Vanois Park", link: "images/vanois-image.png" },
-  { name: "Lago di Braies", link: "images/lagos-image.png" },
-];
-
+// Populate Initial Cards
 initialCards.forEach((item) => cardManager.addCard(item.name, item.link));
 
 // Event Listeners
-buttons.openEdit.addEventListener("click", () =>
-  toggleModal(modals.edit, true)
-);
-buttons.closeEdit.addEventListener("click", () =>
-  toggleModal(modals.edit, false)
-);
-buttons.closeAdd.addEventListener("click", () =>
-  toggleModal(modals.add, false)
+
+// Profile Bio Modal Event Listeners
+buttons.openEdit.addEventListener("click", () => {
+  inputFields.name.value = bioName;
+  inputFields.aboutMe.value = bioDescription;
+  toggleModal(modals.edit, true);
+});
+
+buttons.closeEdit.addEventListener("click", () => toggleModal(modals.edit, false));
+buttons.closeAdd.addEventListener("click", () => toggleModal(modals.add, false));
+
+// Form Validation Event Listeners
+[inputFields.name, inputFields.aboutMe].forEach(field =>
+  field.addEventListener("input", () => toggleButtonState(buttons.save, [inputFields.name, inputFields.aboutMe]))
 );
 
-inputFields.name.addEventListener("input", () =>
-  toggleButtonState(buttons.save, [inputFields.name, inputFields.aboutMe])
+[inputFields.title, inputFields.image].forEach(field =>
+  field.addEventListener("input", () => toggleButtonState(buttons.create, [inputFields.title, inputFields.image]))
 );
-inputFields.aboutMe.addEventListener("input", () =>
-  toggleButtonState(buttons.save, [inputFields.name, inputFields.aboutMe])
-);
-inputFields.title.addEventListener("input", () =>
-  toggleButtonState(buttons.create, [inputFields.title, inputFields.image])
-);
-inputFields.image.addEventListener("input", () =>
-  toggleButtonState(buttons.create, [inputFields.title, inputFields.image])
-);
-
-// Initialize Input Fields with Saved Data
-inputFields.name.value = bioName;
-inputFields.aboutMe.value = bioDescription;
 
 // Form Submission Handlers
 function handleFormSubmit(form, callback) {
@@ -128,46 +125,36 @@ handleFormSubmit(formAdd, () => {
   toggleModal(modals.add, false);
 });
 
-buttons.openEdit.addEventListener("click", () => {
-  inputFields.name.value = bioName;
-  inputFields.aboutMe.value = bioDescription;
+// Add Card Modal Event Listener
+document.querySelector(".profile__bio_add").addEventListener("click", () => {
+  toggleModal(modals.add, true);
+  inputFields.title.value = "";
+  inputFields.image.value = "";
+  toggleButtonState(buttons.create, [inputFields.title, inputFields.image]);
 });
 
-buttons.openCardForm = document
-  .querySelector(".profile__bio_add")
-  .addEventListener("click", () => {
-    toggleModal(modals.add, true);
-    inputFields.title.value = "";
-    inputFields.image.value = "";
-    toggleButtonState(buttons.create, [inputFields.title, inputFields.image]);
-  });
-
+// Handle Card Click Events
 cardsContainer.addEventListener("click", function (event) {
-  // Check if the clicked element is the delete button or its child (like the icon image)
-  if (event.target.closest(".card__delete-image")) {
-    const cardElement = event.target.closest(".card");
+  const target = event.target;
 
-    // Remove the card (delete it from the DOM)
-    cardElement.remove();
+  if (target.classList.contains("card__image")) {
+    // Show image modal
+    modalImage.src = target.src;
+    modalCaption.textContent = target.getAttribute("data-caption");
+    toggleModal(modals.image, true);
   }
 
-  // Check if the clicked element is the like button or its child
-  if (event.target.closest(".card__caption-like_icon")) {
-    // Find the closest card element to ensure correct context
-    const cardElement = event.target.closest(".card");
+  if (target.closest(".card__delete-image")) {
+    target.closest(".card").remove();
+  }
 
-    // Find the like button icon within this specific card
-    const likeButtonIcon = cardElement.querySelector(
-      ".card__caption-like_icon"
-    );
-
-    // Toggle the src attribute between the "like" and "unlike" images
-    if (likeButtonIcon.src.includes("like-button_active.png")) {
-      // If currently liked, unlike it
-      likeButtonIcon.src = "images/like-button.png";
-    } else {
-      // If currently unliked, like it
-      likeButtonIcon.src = "images/like-button_active.png";
-    }
+  if (target.closest(".card__caption-like_icon")) {
+    const likeButtonIcon = target.closest(".card").querySelector(".card__caption-like_icon");
+    likeButtonIcon.src = likeButtonIcon.src.includes("like-button_active.png")
+      ? "images/like-button.png"
+      : "images/like-button_active.png";
   }
 });
+
+// Image Modal Close Button Event Listener
+buttons.closeImage.addEventListener("click", () => toggleModal(modals.image, false));
