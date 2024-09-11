@@ -26,7 +26,9 @@ const inputFields = {
 
 // Profile Elements
 let bioName = document.querySelector(".profile__bio_name").innerHTML;
-let bioDescription = document.querySelector(".profile__bio_description").innerHTML;
+let bioDescription = document.querySelector(
+  ".profile__bio_description"
+).innerHTML;
 const savedName = document.querySelector(".profile__bio_name");
 const savedAboutMe = document.querySelector(".profile__bio_description");
 
@@ -38,17 +40,21 @@ const formAdd = document.querySelector(".profile__bio_form2");
 const cardsContainer = document.querySelector(".cards");
 
 // Modal Image Elements
-const modalImage = modals.image.querySelector(".profile__bio_modal-container-picture");
-const modalCaption = modals.image.querySelector(".profile__bio_modal-container-caption");
+const modalImage = modals.image.querySelector(
+  ".profile__bio_modal-container-picture"
+);
+const modalCaption = modals.image.querySelector(
+  ".profile__bio_modal-container-caption"
+);
 
 // Initial Cards Data
 const initialCards = [
-  { name: "Yosemite Valley", link: "images/yosemite-image.png" },
-  { name: "Lake Louise", link: "images/louise-image.png" },
-  { name: "Bald Mountain", link: "images/montanas-image.png" },
-  { name: "Latemar", link: "images/latemar-image.png" },
-  { name: "Vanois Park", link: "images/vanois-image.png" },
-  { name: "Lago di Braies", link: "images/lagos-image.png" },
+  { name: "Golden Gate Bridge", link: "images/golden-gate.jpg" },
+  { name: "Sunsets in Seattle", link: "images/sunset-in-seattle.jpg" },
+  { name: "Chautauqua Park", link: "images/chautauqua-park.jpg" },
+  { name: "Lombard Street", link: "images/lombard-st.jpg" },
+  { name: "Arizona Desert", link: "images/arizona.jpg" },
+  { name: "Mile 9", link: "images/mile-9.jpg" },
 ];
 
 // Utility Functions
@@ -94,16 +100,24 @@ buttons.openEdit.addEventListener("click", () => {
   toggleModal(modals.edit, true);
 });
 
-buttons.closeEdit.addEventListener("click", () => toggleModal(modals.edit, false));
-buttons.closeAdd.addEventListener("click", () => toggleModal(modals.add, false));
-
-// Form Validation Event Listeners
-[inputFields.name, inputFields.aboutMe].forEach(field =>
-  field.addEventListener("input", () => toggleButtonState(buttons.save, [inputFields.name, inputFields.aboutMe]))
+buttons.closeEdit.addEventListener("click", () =>
+  toggleModal(modals.edit, false)
+);
+buttons.closeAdd.addEventListener("click", () =>
+  toggleModal(modals.add, false)
 );
 
-[inputFields.title, inputFields.image].forEach(field =>
-  field.addEventListener("input", () => toggleButtonState(buttons.create, [inputFields.title, inputFields.image]))
+// Form Validation Event Listeners
+[inputFields.name, inputFields.aboutMe].forEach((field) =>
+  field.addEventListener("input", () =>
+    toggleButtonState(buttons.save, [inputFields.name, inputFields.aboutMe])
+  )
+);
+
+[inputFields.title, inputFields.image].forEach((field) =>
+  field.addEventListener("input", () =>
+    toggleButtonState(buttons.create, [inputFields.title, inputFields.image])
+  )
 );
 
 // Form Submission Handlers
@@ -149,7 +163,9 @@ cardsContainer.addEventListener("click", function (event) {
   }
 
   if (target.closest(".card__caption-like_icon")) {
-    const likeButtonIcon = target.closest(".card").querySelector(".card__caption-like_icon");
+    const likeButtonIcon = target
+      .closest(".card")
+      .querySelector(".card__caption-like_icon");
     likeButtonIcon.src = likeButtonIcon.src.includes("like-button_active.png")
       ? "images/like-button.png"
       : "images/like-button_active.png";
@@ -157,4 +173,6 @@ cardsContainer.addEventListener("click", function (event) {
 });
 
 // Image Modal Close Button Event Listener
-buttons.closeImage.addEventListener("click", () => toggleModal(modals.image, false));
+buttons.closeImage.addEventListener("click", () =>
+  toggleModal(modals.image, false)
+);
