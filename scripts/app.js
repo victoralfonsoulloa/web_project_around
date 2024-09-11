@@ -82,7 +82,7 @@ class CardManager {
     imageElement.src = imageUrl;
     imageElement.alt = title;
     imageElement.setAttribute("data-caption", title);
-    this.container.append(cardElement);
+    this.container.prepend(cardElement);
   }
 }
 
