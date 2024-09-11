@@ -45,6 +45,7 @@
 }
 
 .profile__bio_modal-container {
+  transition: all .5s ease-in-out;
   display: flex;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 10;
