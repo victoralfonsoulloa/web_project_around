@@ -99,8 +99,11 @@ buttons.openEdit.addEventListener("click", () => {
   toggleModal(modals.edit, true);
 });
 
-buttons.closeEdit.addEventListener("click", () => {
-  // Close modal without saving
+buttons.closeEdit.addEventListener("click", (event) => {
+  event.preventDefault();
+  // Reset the input fields to the last saved values
+  inputFields.name.value = bioName;
+  inputFields.aboutMe.value = bioDescription;
   toggleModal(modals.edit, false);
 });
 
