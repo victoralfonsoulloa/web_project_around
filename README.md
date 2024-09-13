@@ -1,7 +1,5 @@
 Web Project Around the U.S.
 
-![Project Demo](https://jmp.sh/69HV3GVb)
-
 📖 Project Overview
 
 Around the U.S. is a simple social media-style platform where users can personalize their profile by uploading and displaying images of locations they’ve visited or want to visit across the United States. The site allows users to manage their profile by adding, editing, and liking images that reflect their journey. To make the experience more engaging, the platform comes preloaded with a few photos from my personal trips across the U.S., showcasing real places that can inspire users as they customize their profiles.
