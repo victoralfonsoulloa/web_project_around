@@ -13,7 +13,7 @@ const buttons = {
   save: document.querySelector(".profile__bio-button--save"),
   create: document.querySelector("#profile__bio-button--create"),
   closeImage: document.querySelector("#profile__bio-button--close-img"),
-  delete: document.querySelector("card__delete-image"),
+  delete: document.querySelector(".card__delete-image"), // Corrected selector
 };
 
 // Input Fields
@@ -25,10 +25,10 @@ const inputFields = {
 };
 
 // Profile Elements
-let bioName = document.querySelector(".profile__bio_name").innerHTML;
-let bioDescription = document.querySelector(
-  ".profile__bio_description"
-).innerHTML;
+let bioName = "Victor Alfonso"; // Default Name
+let bioDescription = "Software Engineer"; // Default Bio
+
+// Elements to display the saved data
 const savedName = document.querySelector(".profile__bio_name");
 const savedAboutMe = document.querySelector(".profile__bio_description");
 
@@ -91,52 +91,45 @@ const cardManager = new CardManager(cardsContainer);
 // Populate Initial Cards
 initialCards.forEach((item) => cardManager.addCard(item.name, item.link));
 
-// Event Listeners
-
 // Profile Bio Modal Event Listeners
 buttons.openEdit.addEventListener("click", () => {
+  // When opening the modal, fill inputs with the last saved values
   inputFields.name.value = bioName;
   inputFields.aboutMe.value = bioDescription;
   toggleModal(modals.edit, true);
 });
 
-buttons.closeEdit.addEventListener("click", () =>
-  toggleModal(modals.edit, false)
-);
-buttons.closeAdd.addEventListener("click", () =>
-  toggleModal(modals.add, false)
-);
-
-// Form Validation Event Listeners
-[inputFields.name, inputFields.aboutMe].forEach((field) =>
-  field.addEventListener("input", () =>
-    toggleButtonState(buttons.save, [inputFields.name, inputFields.aboutMe])
-  )
-);
-
-[inputFields.title, inputFields.image].forEach((field) =>
-  field.addEventListener("input", () =>
-    toggleButtonState(buttons.create, [inputFields.title, inputFields.image])
-  )
-);
-
-// Form Submission Handlers
-function handleFormSubmit(form, callback) {
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    callback();
-  });
-}
-
-handleFormSubmit(formEdit, () => {
-  savedName.textContent = inputFields.name.value;
-  savedAboutMe.textContent = inputFields.aboutMe.value;
+buttons.closeEdit.addEventListener("click", () => {
+  // Close modal without saving
   toggleModal(modals.edit, false);
 });
 
-handleFormSubmit(formAdd, () => {
-  cardManager.addCard(inputFields.title.value, inputFields.image.value);
+buttons.closeAdd.addEventListener("click", () => {
+  // Close modal without saving
   toggleModal(modals.add, false);
+});
+
+// Form Submission Handlers
+formEdit.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  // Update the name and bio only when the user clicks Save
+  bioName = inputFields.name.value;
+  bioDescription = inputFields.aboutMe.value;
+
+  // Update the displayed profile data
+  savedName.textContent = bioName;
+  savedAboutMe.textContent = bioDescription;
+
+  // Close the modal after saving
+  toggleModal(modals.edit, false);
+});
+
+// Form Validation for disabling save button if fields are empty
+[inputFields.name, inputFields.aboutMe].forEach((field) => {
+  field.addEventListener("input", () => {
+    toggleButtonState(buttons.save, [inputFields.name, inputFields.aboutMe]);
+  });
 });
 
 // Add Card Modal Event Listener
@@ -145,6 +138,20 @@ document.querySelector(".profile__bio_add").addEventListener("click", () => {
   inputFields.title.value = "";
   inputFields.image.value = "";
   toggleButtonState(buttons.create, [inputFields.title, inputFields.image]);
+});
+
+// Add event listeners for title and image fields to enable/disable the create button
+[inputFields.title, inputFields.image].forEach((field) => {
+  field.addEventListener("input", () => {
+    toggleButtonState(buttons.create, [inputFields.title, inputFields.image]);
+  });
+});
+
+// Form Submission Handlers
+formAdd.addEventListener("submit", (event) => {
+  event.preventDefault();
+  cardManager.addCard(inputFields.title.value, inputFields.image.value);
+  toggleModal(modals.add, false);
 });
 
 // Handle Card Click Events
