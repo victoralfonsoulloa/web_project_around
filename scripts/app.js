@@ -1,6 +1,8 @@
 // Modal Elements
 const modals = {
+  container: document.querySelectorAll(".profile__bio_modal-container"),
   edit: document.querySelector("#profile__bio_modal-container--edit"),
+  form: document.querySelectorAll(".form"),
   add: document.querySelector("#profile__bio_modal-container-add"),
   image: document.querySelector("#profile__bio_modal-container_img"),
 };
@@ -92,6 +94,24 @@ const cardManager = new CardManager(cardsContainer);
 initialCards.forEach((item) => cardManager.addCard(item.name, item.link));
 
 // Profile Bio Modal Event Listeners
+
+modals.container.forEach(container => {
+  container.addEventListener("click", () => {
+    toggleModal(modals.edit, false);
+    toggleModal(modals.add, false);
+    toggleModal(modals.image, false);
+  })
+})
+
+modals.form.forEach(modal => {
+  modal.addEventListener("click", (e) =>{
+
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+    return false;
+  })
+});
+
 buttons.openEdit.addEventListener("click", () => {
   // When opening the modal, fill inputs with the last saved values
   inputFields.name.value = bioName;
@@ -186,3 +206,70 @@ cardsContainer.addEventListener("click", function (event) {
 buttons.closeImage.addEventListener("click", () =>
   toggleModal(modals.image, false)
 );
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add("form__input_type_error");
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add("form__input-error_active");
+};
+
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove("form__input_type_error");
+  errorElement.classList.remove("form__input-error_active");
+  errorElement.textContent = "";
+};
+
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
+const toggleButtonState2 = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add("form__button-inactive");
+  } else {
+    buttonElement.classList.remove("form__button-inactive");
+  }
+};
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
+  const buttonElement = formElement.querySelector(".form__submit");
+  toggleButtonState2(inputList, buttonElement);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", function () {
+      toggleButtonState2(inputList, buttonElement);
+      checkInputValidity(formElement, inputElement);
+    });
+  });
+};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll(".form"));
+  console.log(formList)
+  formList.forEach((formElement) => {
+    formElement.addEventListener("submit", function (evt) {
+      evt.preventDefault(); // Prevent form submission
+      console.log("testing")
+    });
+    const fieldsetList = Array.from(formElement.querySelectorAll(".profile__bio_form-set"));
+    console.log(fieldsetList)
+    console.log(fieldsetList)
+    fieldsetList.forEach((fieldset) => {
+      setEventListeners(fieldset);
+    });
+  });
+};
+
+enableValidation();

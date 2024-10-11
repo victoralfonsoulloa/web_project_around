@@ -52,34 +52,47 @@
                   class="profile__bio_modal-container"
                   id="profile__bio_modal-container--edit"
                 >
-                  <form class="profile__bio_form">
-                    <h2 class="profile__bio_form-title">Edit profile</h2>
-                    <input
-                      type="text"
-                      placeholder="Name"
-                      class="profile__bio_form-input profile__bio_form_input-name"
-                      id="name"
-                    />
-                    <input
-                      type="text"
-                      placeholder="About me"
-                      class="profile__bio_form-input"
-                      id="aboutMe"
-                    />
-                    <button type="submit" class="profile__bio-button--save">
-                      Save
-                    </button>
-
-                    <button
-                      class="profile__bio-button--close"
-                      id="profile__bio-button--close"
-                    >
-                      <img
-                        src="images/close-button.png"
-                        alt="button-close_icon"
-                        class="profile__bio-button--close-icon"
+                  <form class="profile__bio_form form">
+                    <fieldset class="profile__bio_form-set">
+                      <h2 class="profile__bio_form-title">Edit profile</h2>
+                      <input
+                        type="text"
+                        placeholder="Name"
+                        class="profile__bio_form-input profile__bio_form_input-name form__input"
+                        id="name"
+                        required
+                        minlength="2"
+                        maxlength="40"
                       />
-                    </button>
+                      <span class="form__input-error name-error"></span>
+                      <input
+                        type="text"
+                        placeholder="About me"
+                        class="profile__bio_form-input form__input"
+                        id="aboutMe"
+                        required
+                        minlength="2"
+                        maxlength="65"
+                      />
+                      <span class="form__input-error aboutMe-error"></span>
+                      <button
+                        type="submit"
+                        class="profile__bio-button--save form__submit"
+                      >
+                        Save
+                      </button>
+
+                      <button
+                        class="profile__bio-button--close"
+                        id="profile__bio-button--close"
+                      >
+                        <img
+                          src="images/close-button.png"
+                          alt="button-close_icon"
+                          class="profile__bio-button--close-icon"
+                        />
+                      </button>
+                    </fieldset>
                   </form>
                 </div>
               </div>
@@ -97,39 +110,50 @@
             class="profile__bio_modal-container profile__bio_modal-container-add"
             id="profile__bio_modal-container-add"
           >
-            <form class="profile__bio_form profile__bio_form2">
-              <h2 class="profile__bio_form-title">New Place</h2>
-              <input
-                type="text"
-                placeholder="Title"
-                class="profile__bio_form-input profile__bio_form_input-name"
-                id="title"
-              />
-              <input
-                type="text"
-                placeholder="Image URL"
-                class="profile__bio_form-input"
-                id="imageUrl"
-              />
-              <button
-                type="submit"
-                class="profile__bio-button--save profile__bio-button--create"
-                id="profile__bio-button--create"
-              >
-                Create
-              </button>
-
-              <button
-                type="button"
-                class="profile__bio-button--close"
-                id="profile__bio-button--close-add"
-              >
-                <img
-                  src="images/close-button.png"
-                  alt="button-close_icon"
-                  class="profile__bio-button--close-icon"
+            <form class="profile__bio_form profile__bio_form2 form">
+              <fieldset class="profile__bio_form-set">
+                <h2 class="profile__bio_form-title">New Place</h2>
+                <input
+                  type="text"
+                  placeholder="Title"
+                  class="profile__bio_form-input profile__bio_form_input-name form__input"
+                  id="title"
+                  required
+                  minlength="2"
+                  maxlength="40"
                 />
-              </button>
+                <span class="form__input-error title-error"></span>
+                <input
+                  type="url"
+                  placeholder="Image URL"
+                  class="profile__bio_form-input form__input"
+                  id="imageUrl"
+                  pattern="https://.*"
+                  required
+                  minlength="2"
+                  maxlength="40"
+                />
+                <span class="form__input-error imageUrl-error"></span>
+                <button
+                  type="submit"
+                  class="profile__bio-button--save profile__bio-button--create form__submit"
+                  id="profile__bio-button--create"
+                >
+                  Create
+                </button>
+
+                <button
+                  type="button"
+                  class="profile__bio-button--close"
+                  id="profile__bio-button--close-add"
+                >
+                  <img
+                    src="images/close-button.png"
+                    alt="button-close_icon"
+                    class="profile__bio-button--close-icon"
+                  />
+                </button>
+              </fieldset>
             </form>
           </div>
         </section>
@@ -138,13 +162,13 @@
           class="profile__bio_modal-container"
           id="profile__bio_modal-container_img"
         >
-          <div class="profile__bio_modal-container_img-content">
+          <div class="profile__bio_modal-container_img-content form">
             <img
               src="images/profile__avatar.jpg"
               class="profile__bio_modal-container-picture"
               alt=""
             />
-            <p class="profile__bio_modal-container-caption">Hello world</p>
+            <p class="profile__bio_modal-container-caption"></p>
             <button
               type="button"
               class="profile__bio-button--close"
