@@ -70,28 +70,55 @@ function toggleButtonState(button, fields) {
 }
 
 // Card Management
-class CardManager {
-  constructor(container) {
-    this.container = container;
+class Card {
+  constructor(container, title, imageUrl, templateSelector) {
+    this._container = container;
+    this._title = title;
+    this._imageUrl = imageUrl;
+    this._templateSelector = templateSelector;
   }
 
-  addCard(title, imageUrl) {
-    const cardTemplate = document.querySelector("#card-template").content;
-    const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-    const imageElement = cardElement.querySelector(".card__image");
+  _getTemplate() {
+    const cardTemplate = document.querySelector(this._templateSelector).content.querySelector(".card").cloneNode(true);
+    return cardTemplate;
+  }
 
-    cardElement.querySelector(".card__caption_title").textContent = title;
-    imageElement.src = imageUrl;
-    imageElement.alt = title;
-    imageElement.setAttribute("data-caption", title);
-    this.container.prepend(cardElement);
+  _generateCard() {
+    const cardElement = this._getTemplate();
+    const imageElement = cardElement.querySelector(".card__image");
+    cardElement.querySelector(".card__caption_title").textContent = this._title;
+    imageElement.src = this._imageUrl;
+    imageElement.alt = this._title;
+    imageElement.setAttribute("data-caption", this._title);
+    this._setEventListeners(cardElement);
+    return cardElement;
+  }
+
+  _setEventListeners(cardElement) {
+    cardElement.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target.closest(".card__caption-like_icon")) {
+        const likeButtonIcon = target
+          .closest(".card")
+          .querySelector(".card__caption-like_icon");
+        likeButtonIcon.src = likeButtonIcon.src.includes("like-button_active.png")
+          ? "images/like-button.png"
+          : "images/like-button_active.png";
+      }
+    })
+  }
+
+  addCard() {
+    const cardInstance = this._generateCard(title, imageUrl);
+    this._container.prepend(cardInstance);
   }
 }
 
-const cardManager = new CardManager(cardsContainer);
-
 // Populate Initial Cards
-initialCards.forEach((item) => cardManager.addCard(item.name, item.link));
+initialCards.forEach((item) => {
+  const cardHandler = new Card(cardsContainer, item.name, item.link, "#card-template");
+  cardHandler.addCard()
+});
 
 // Profile Bio Modal Event Listeners
 
@@ -173,7 +200,7 @@ document.querySelector(".profile__bio_add").addEventListener("click", () => {
 // Form Submission Handlers
 formAdd.addEventListener("submit", (event) => {
   event.preventDefault();
-  cardManager.addCard(inputFields.title.value, inputFields.image.value);
+  Card.addCard(inputFields.title.value, inputFields.image.value);
   toggleModal(modals.add, false);
 });
 
@@ -190,15 +217,6 @@ cardsContainer.addEventListener("click", function (event) {
 
   if (target.closest(".card__delete-image")) {
     target.closest(".card").remove();
-  }
-
-  if (target.closest(".card__caption-like_icon")) {
-    const likeButtonIcon = target
-      .closest(".card")
-      .querySelector(".card__caption-like_icon");
-    likeButtonIcon.src = likeButtonIcon.src.includes("like-button_active.png")
-      ? "images/like-button.png"
-      : "images/like-button_active.png";
   }
 });
 
