@@ -68,6 +68,31 @@
   margin-left: 8px;
 }
 
+.form__button--save {
+  height: 50px;
+  border-radius: 2px;
+  background-color: black;
+  font-family: Inter;
+  font-size: 1.12rem;
+  font-weight: 400;
+  line-height: 1.21;
+  color: #ffffff;
+  margin-top: 48px;
+}
+
+.form__button--save:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
+.form__button--save:disabled {
+  border: 2px solid rgba(196, 196, 196, 1);
+  background-color: transparent;
+  color: rgba(196, 196, 196, 1);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .form__button-inactive {
   opacity: 0.5;
   pointer-events: none;

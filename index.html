@@ -38,19 +38,19 @@
               <div class="profile__bio_container">
                 <h1 class="profile__bio_name">Victor Alfonso</h1>
                 <button
-                  class="profile__bio-button--open"
-                  id="profile__bio-button--open"
+                  class="popup__button--open"
+                  id="popup__button--open"
                 >
                   <img
                     src="images/edit-button.png"
                     alt="Edit button"
-                    class="profile__bio-button_image"
+                    class="popup__button_image"
                   />
                 </button>
 
                 <div
-                  class="profile__bio_modal-container"
-                  id="profile__bio_modal-container--edit"
+                  class="popup"
+                  id="popup--edit"
                 >
                   <form class="form form--edit">
                     <fieldset class="form__fieldset">
@@ -77,19 +77,19 @@
                       <span class="form__input-error aboutMe-error"></span>
                       <button
                         type="submit"
-                        class="profile__bio-button--save form__submit"
+                        class="form__button--save form__submit"
                       >
                         Save
                       </button>
 
                       <button
-                        class="profile__bio-button--close"
-                        id="profile__bio-button--close"
+                        class="popup__button--close"
+                        id="popup__button--close"
                       >
                         <img
                           src="images/close-button.png"
                           alt="button-close_icon"
-                          class="profile__bio-button--close-icon"
+                          class="popup__button--close-icon"
                         />
                       </button>
                     </fieldset>
@@ -107,8 +107,8 @@
             />
           </button>
           <div
-            class="profile__bio_modal-container profile__bio_modal-container-add"
-            id="profile__bio_modal-container-add"
+            class="popup popup-add"
+            id="popup-add"
           >
             <form class="form form--add">
               <fieldset class="form__fieldset">
@@ -136,21 +136,21 @@
                 <span class="form__input-error imageUrl-error"></span>
                 <button
                   type="submit"
-                  class="profile__bio-button--save profile__bio-button--create form__submit"
-                  id="profile__bio-button--create"
+                  class="form__button--save popup__button--create form__submit"
+                  id="popup__button--create"
                 >
                   Create
                 </button>
 
                 <button
                   type="button"
-                  class="profile__bio-button--close"
-                  id="profile__bio-button--close-add"
+                  class="popup__button--close"
+                  id="popup__button--close-add"
                 >
                   <img
                     src="images/close-button.png"
                     alt="button-close_icon"
-                    class="profile__bio-button--close-icon"
+                    class="popup__button--close-icon"
                   />
                 </button>
               </fieldset>
@@ -159,25 +159,25 @@
         </section>
         <section class="cards"></section>
         <div
-          class="profile__bio_modal-container"
-          id="profile__bio_modal-container_img"
+          class="popup"
+          id="popup_img"
         >
-          <div class="profile__bio_modal-container_img-content">
+          <div class="popup__img-content">
             <img
               src="images/profile__avatar.jpg"
-              class="profile__bio_modal-container-picture"
+              class="popup-picture"
               alt=""
             />
-            <p class="profile__bio_modal-container-caption"></p>
+            <p class="popup-caption"></p>
             <button
               type="button"
-              class="profile__bio-button--close"
-              id="profile__bio-button--close-img"
+              class="popup__button--close"
+              id="popup__button--close-img"
             >
               <img
                 src="images/close-button.png"
                 alt="button-close_icon"
-                class="profile__bio-button--close-icon"
+                class="popup__button--close-icon"
               />
             </button>
           </div>

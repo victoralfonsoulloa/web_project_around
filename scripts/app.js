@@ -1,23 +1,23 @@
 // Modal Elements
 const modals = {
-  container: document.querySelectorAll(".profile__bio_modal-container"),
-  edit: document.querySelector("#profile__bio_modal-container--edit"),
+  container: document.querySelectorAll(".popup"),
+  edit: document.querySelector("#popup--edit"),
   form: document.querySelectorAll(".form"),
-  add: document.querySelector("#profile__bio_modal-container-add"),
+  add: document.querySelector("#popup-add"),
   imageContainer: document.querySelector(
-    ".profile__bio_modal-container_img-content"
+    ".popup__img-content"
   ),
-  image: document.querySelector("#profile__bio_modal-container_img"),
+  image: document.querySelector("#popup_img"),
 };
 
 // Button Elements
 const buttons = {
-  openEdit: document.querySelector("#profile__bio-button--open"),
-  closeEdit: document.querySelector("#profile__bio-button--close"),
-  closeAdd: document.querySelector("#profile__bio-button--close-add"),
-  save: document.querySelector(".profile__bio-button--save"),
-  create: document.querySelector("#profile__bio-button--create"),
-  closeImage: document.querySelector("#profile__bio-button--close-img"),
+  openEdit: document.querySelector("#popup__button--open"),
+  closeEdit: document.querySelector("#popup__button--close"),
+  closeAdd: document.querySelector("#popup__button--close-add"),
+  save: document.querySelector(".form__button--save"),
+  create: document.querySelector("#popup__button--create"),
+  closeImage: document.querySelector("#popup__button--close-img"),
   delete: document.querySelector(".card__delete-image"), // Corrected selector
 };
 
@@ -46,10 +46,10 @@ const cardsContainer = document.querySelector(".cards");
 
 // Modal Image Elements
 const modalImage = modals.image.querySelector(
-  ".profile__bio_modal-container-picture"
+  ".popup-picture"
 );
 const modalCaption = modals.image.querySelector(
-  ".profile__bio_modal-container-caption"
+  ".popup-caption"
 );
 
 // Initial Cards Data
@@ -64,7 +64,7 @@ const initialCards = [
 
 // Utility Functions
 function toggleModal(modal, isOpen) {
-  modal.classList.toggle("profile__bio_modal-container--show", isOpen);
+  modal.classList.toggle("popup--show", isOpen);
 }
 
 function toggleButtonState(button, fields) {
