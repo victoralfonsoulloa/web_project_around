@@ -4,6 +4,9 @@ const modals = {
   edit: document.querySelector("#profile__bio_modal-container--edit"),
   form: document.querySelectorAll(".form"),
   add: document.querySelector("#profile__bio_modal-container-add"),
+  imageContainer: document.querySelector(
+    ".profile__bio_modal-container_img-content"
+  ),
   image: document.querySelector("#profile__bio_modal-container_img"),
 };
 
@@ -35,8 +38,8 @@ const savedName = document.querySelector(".profile__bio_name");
 const savedAboutMe = document.querySelector(".profile__bio_description");
 
 // Forms
-const formEdit = document.querySelector(".profile__bio_form");
-const formAdd = document.querySelector(".profile__bio_form2");
+const formEdit = document.querySelector(".form--edit");
+const formAdd = document.querySelector(".form--add");
 
 // Cards Container
 const cardsContainer = document.querySelector(".cards");
@@ -71,15 +74,17 @@ function toggleButtonState(button, fields) {
 
 // Card Management
 class Card {
-  constructor(container, title, imageUrl, templateSelector) {
-    this._container = container;
+  constructor(title, imageUrl, templateSelector) {
     this._title = title;
     this._imageUrl = imageUrl;
     this._templateSelector = templateSelector;
   }
 
   _getTemplate() {
-    const cardTemplate = document.querySelector(this._templateSelector).content.querySelector(".card").cloneNode(true);
+    const cardTemplate = document
+      .querySelector(this._templateSelector)
+      .content.querySelector(".card")
+      .cloneNode(true);
     return cardTemplate;
   }
 
@@ -101,42 +106,49 @@ class Card {
         const likeButtonIcon = target
           .closest(".card")
           .querySelector(".card__caption-like_icon");
-        likeButtonIcon.src = likeButtonIcon.src.includes("like-button_active.png")
+        likeButtonIcon.src = likeButtonIcon.src.includes(
+          "like-button_active.png"
+        )
           ? "images/like-button.png"
           : "images/like-button_active.png";
       }
-    })
+    });
   }
 
   addCard() {
     const cardInstance = this._generateCard(title, imageUrl);
-    this._container.prepend(cardInstance);
+    cardsContainer.prepend(cardInstance);
   }
 }
 
 // Populate Initial Cards
 initialCards.forEach((item) => {
-  const cardHandler = new Card(cardsContainer, item.name, item.link, "#card-template");
-  cardHandler.addCard()
+  const cardHandler = new Card(item.name, item.link, "#card-template");
+  cardHandler.addCard();
 });
 
 // Profile Bio Modal Event Listeners
 
-modals.container.forEach(container => {
+modals.container.forEach((container) => {
   container.addEventListener("click", () => {
     toggleModal(modals.edit, false);
     toggleModal(modals.add, false);
     toggleModal(modals.image, false);
-  })
-})
+  });
+});
 
-modals.form.forEach(modal => {
-  modal.addEventListener("click", (e) =>{
-
+modals.form.forEach((modal) => {
+  modal.addEventListener("click", (e) => {
     e.stopPropagation();
     e.stopImmediatePropagation();
     return false;
-  })
+  });
+});
+
+modals.imageContainer.addEventListener("click", (e) => {
+  e.stopPropagation();
+  e.stopImmediatePropagation();
+  return false;
 });
 
 buttons.openEdit.addEventListener("click", () => {
@@ -200,7 +212,12 @@ document.querySelector(".profile__bio_add").addEventListener("click", () => {
 // Form Submission Handlers
 formAdd.addEventListener("submit", (event) => {
   event.preventDefault();
-  Card.addCard(inputFields.title.value, inputFields.image.value);
+  formCardHandler = new Card(
+    inputFields.title.value,
+    inputFields.image.value,
+    "#card-template"
+  );
+  formCardHandler.addCard();
   toggleModal(modals.add, false);
 });
 
@@ -275,15 +292,17 @@ const setEventListeners = (formElement) => {
 
 const enableValidation = () => {
   const formList = Array.from(document.querySelectorAll(".form"));
-  console.log(formList)
+  console.log(formList);
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (evt) {
       evt.preventDefault(); // Prevent form submission
-      console.log("testing")
+      console.log("testing");
     });
-    const fieldsetList = Array.from(formElement.querySelectorAll(".profile__bio_form-set"));
-    console.log(fieldsetList)
-    console.log(fieldsetList)
+    const fieldsetList = Array.from(
+      formElement.querySelectorAll(".form__fieldset")
+    );
+    console.log(fieldsetList);
+    console.log(fieldsetList);
     fieldsetList.forEach((fieldset) => {
       setEventListeners(fieldset);
     });
@@ -291,3 +310,7 @@ const enableValidation = () => {
 };
 
 enableValidation();
+
+class formValidator {
+  constructor() {}
+}

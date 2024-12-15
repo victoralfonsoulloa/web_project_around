@@ -52,13 +52,13 @@
                   class="profile__bio_modal-container"
                   id="profile__bio_modal-container--edit"
                 >
-                  <form class="profile__bio_form form">
-                    <fieldset class="profile__bio_form-set">
-                      <h2 class="profile__bio_form-title">Edit profile</h2>
+                  <form class="form form--edit">
+                    <fieldset class="form__fieldset">
+                      <h2 class="form__title">Edit profile</h2>
                       <input
                         type="text"
                         placeholder="Name"
-                        class="profile__bio_form-input profile__bio_form_input-name form__input"
+                        class="form__input form__input-name"
                         id="name"
                         required
                         minlength="2"
@@ -68,7 +68,7 @@
                       <input
                         type="text"
                         placeholder="About me"
-                        class="profile__bio_form-input form__input"
+                        class="form__input form__input"
                         id="aboutMe"
                         required
                         minlength="2"
@@ -110,13 +110,13 @@
             class="profile__bio_modal-container profile__bio_modal-container-add"
             id="profile__bio_modal-container-add"
           >
-            <form class="profile__bio_form profile__bio_form2 form">
-              <fieldset class="profile__bio_form-set">
-                <h2 class="profile__bio_form-title">New Place</h2>
+            <form class="form form--add">
+              <fieldset class="form__fieldset">
+                <h2 class="form__title">New Place</h2>
                 <input
                   type="text"
                   placeholder="Title"
-                  class="profile__bio_form-input profile__bio_form_input-name form__input"
+                  class="form__input form__input-name"
                   id="title"
                   required
                   minlength="2"
@@ -126,7 +126,7 @@
                 <input
                   type="url"
                   placeholder="Image URL"
-                  class="profile__bio_form-input form__input"
+                  class="form__input form__input"
                   id="imageUrl"
                   pattern="https://.*"
                   required
@@ -162,7 +162,7 @@
           class="profile__bio_modal-container"
           id="profile__bio_modal-container_img"
         >
-          <div class="profile__bio_modal-container_img-content form">
+          <div class="profile__bio_modal-container_img-content">
             <img
               src="images/profile__avatar.jpg"
               class="profile__bio_modal-container-picture"
