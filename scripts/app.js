@@ -1,11 +1,12 @@
 // Modal Elements
 const modals = {
-  container: document.querySelectorAll(".popup"),
+  popup: document.querySelectorAll(".popup"),
+  popupContainer: document.querySelectorAll(".popup__container"),
   edit: document.querySelector("#popup--edit"),
   form: document.querySelectorAll(".form"),
   add: document.querySelector("#popup-add"),
   imageContainer: document.querySelector(
-    ".popup__img-content"
+    ".popup__container-image"
   ),
   image: document.querySelector("#popup_img"),
 };
@@ -129,7 +130,7 @@ initialCards.forEach((item) => {
 
 // Profile Bio Modal Event Listeners
 
-modals.container.forEach((container) => {
+modals.popup.forEach((container) => {
   container.addEventListener("click", () => {
     toggleModal(modals.edit, false);
     toggleModal(modals.add, false);
@@ -137,7 +138,7 @@ modals.container.forEach((container) => {
   });
 });
 
-modals.form.forEach((modal) => {
+modals.popupContainer.forEach((modal) => {
   modal.addEventListener("click", (e) => {
     e.stopPropagation();
     e.stopImmediatePropagation();

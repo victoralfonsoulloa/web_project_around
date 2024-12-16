@@ -15,12 +15,24 @@
   height: 100vh;
 }
 
+.popup__container {
+  background-color: rgba(255, 255, 255, 1);
+  width: 430px;
+  padding: 36px;
+  border-radius: 10px;
+  border-bottom: 4px solid black;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
 .popup--show {
   pointer-events: auto;
   opacity: 1;
 }
 
-.popup__img-content {
+.popup__container-image {
   position: relative;
 }
 
@@ -81,6 +93,12 @@
 
 
 @media (max-width: 675px) {
+  .popup__container {
+    box-sizing: border-box;
+    padding: 25px 22px;
+    max-width: 282px;
+  }
+
   .popup__button_image {
     width: 18px;
     height: 18px;

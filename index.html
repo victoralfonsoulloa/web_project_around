@@ -37,10 +37,7 @@
             <div class="profile__bio">
               <div class="profile__bio_container">
                 <h1 class="profile__bio_name">Victor Alfonso</h1>
-                <button
-                  class="popup__button--open"
-                  id="popup__button--open"
-                >
+                <button class="popup__button--open" id="popup__button--open">
                   <img
                     src="images/edit-button.png"
                     alt="Edit button"
@@ -48,52 +45,54 @@
                   />
                 </button>
 
-                <div
-                  class="popup"
-                  id="popup--edit"
-                >
-                  <form class="form form--edit">
-                    <fieldset class="form__fieldset">
-                      <h2 class="form__title">Edit profile</h2>
-                      <input
-                        type="text"
-                        placeholder="Name"
-                        class="form__input form__input-name"
-                        id="name"
-                        required
-                        minlength="2"
-                        maxlength="40"
+                <div class="popup" id="popup--edit">
+                  <div class="popup__container">
+                    <form class="form form--edit">
+                      <fieldset class="form__fieldset">
+                        <h2 class="form__title">Edit Profile</h2>
+                        <label for="form__field">
+                          <input
+                            type="text"
+                            placeholder="Name"
+                            class="form__input form__input-name"
+                            id="name"
+                            required
+                            minlength="2"
+                            maxlength="40"
+                          />
+                          <span class="form__input-error name-error"></span>
+                        </label>
+                        <label for="form__field">
+                          <input
+                            type="text"
+                            placeholder="About me"
+                            class="form__input form__input-aboutMe"
+                            id="aboutMe"
+                            required
+                            minlength="2"
+                            maxlength="65"
+                          />
+                          <span class="form__input-error aboutMe-error"></span>
+                        </label>
+                        <button
+                          type="submit"
+                          class="form__button--save form__submit"
+                        >
+                          Save
+                        </button>
+                      </fieldset>
+                    </form>
+                    <button
+                      class="popup__button--close"
+                      id="popup__button--close"
+                    >
+                      <img
+                        src="images/close-button.png"
+                        alt="button-close_icon"
+                        class="popup__button--close-icon"
                       />
-                      <span class="form__input-error name-error"></span>
-                      <input
-                        type="text"
-                        placeholder="About me"
-                        class="form__input form__input"
-                        id="aboutMe"
-                        required
-                        minlength="2"
-                        maxlength="65"
-                      />
-                      <span class="form__input-error aboutMe-error"></span>
-                      <button
-                        type="submit"
-                        class="form__button--save form__submit"
-                      >
-                        Save
-                      </button>
-
-                      <button
-                        class="popup__button--close"
-                        id="popup__button--close"
-                      >
-                        <img
-                          src="images/close-button.png"
-                          alt="button-close_icon"
-                          class="popup__button--close-icon"
-                        />
-                      </button>
-                    </fieldset>
-                  </form>
+                    </button>
+                  </div>
                 </div>
               </div>
               <h2 class="profile__bio_description">Software Engineer</h2>
@@ -106,63 +105,62 @@
               class="profile__bio_add_button"
             />
           </button>
-          <div
-            class="popup popup-add"
-            id="popup-add"
-          >
-            <form class="form form--add">
-              <fieldset class="form__fieldset">
-                <h2 class="form__title">New Place</h2>
-                <input
-                  type="text"
-                  placeholder="Title"
-                  class="form__input form__input-name"
-                  id="title"
-                  required
-                  minlength="2"
-                  maxlength="40"
+          <div class="popup popup-add" id="popup-add">
+            <div class="popup__container">
+              <form class="form form--add">
+                <fieldset class="form__fieldset">
+                  <h2 class="form__title">New Place</h2>
+                  <label class="form__field">
+                    <input
+                      type="text"
+                      placeholder="Title"
+                      class="form__input form__input-name"
+                      id="title"
+                      required
+                      minlength="2"
+                      maxlength="40"
+                    />
+                    <span class="form__input-error title-error"></span>
+                  </label>
+                  <label class="form__field">
+                    <input
+                      type="url"
+                      placeholder="Image URL"
+                      class="form__input"
+                      id="imageUrl"
+                      pattern="https://.*"
+                      required
+                      minlength="2"
+                      maxlength="40"
+                    />
+                    <span class="form__input-error imageUrl-error"></span>
+                  </label>
+                  <button
+                    type="submit"
+                    class="form__button--save popup__button--create form__submit"
+                    id="popup__button--create"
+                  >
+                    Create
+                  </button>
+                </fieldset>
+              </form>
+              <button
+                type="button"
+                class="popup__button--close"
+                id="popup__button--close-add"
+              >
+                <img
+                  src="images/close-button.png"
+                  alt="button-close_icon"
+                  class="popup__button--close-icon"
                 />
-                <span class="form__input-error title-error"></span>
-                <input
-                  type="url"
-                  placeholder="Image URL"
-                  class="form__input form__input"
-                  id="imageUrl"
-                  pattern="https://.*"
-                  required
-                  minlength="2"
-                  maxlength="40"
-                />
-                <span class="form__input-error imageUrl-error"></span>
-                <button
-                  type="submit"
-                  class="form__button--save popup__button--create form__submit"
-                  id="popup__button--create"
-                >
-                  Create
-                </button>
-
-                <button
-                  type="button"
-                  class="popup__button--close"
-                  id="popup__button--close-add"
-                >
-                  <img
-                    src="images/close-button.png"
-                    alt="button-close_icon"
-                    class="popup__button--close-icon"
-                  />
-                </button>
-              </fieldset>
-            </form>
+              </button>
+            </div>
           </div>
         </section>
         <section class="cards"></section>
-        <div
-          class="popup"
-          id="popup_img"
-        >
-          <div class="popup__img-content">
+        <div class="popup" id="popup_img">
+          <div class="popup__container-image">
             <img
               src="images/profile__avatar.jpg"
               class="popup-picture"
