@@ -23,7 +23,12 @@
   font-weight: 400;
   line-height: 1.21;
   color: #000;
-  margin: 8px ;
+}
+
+.form__input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1.5px solid black;
 }
 
 .form__input::placeholder {
@@ -34,27 +39,22 @@
   color: #c4c4c4;
 }
 
-.form__input-name {
-  margin-bottom: 8px;
-}
-
 .form__input_type_error {
   border-color: red;
 }
 
 .form__input-error {
-  color: red;
-  font-size: 12px;
-  display: none;
+  display: block;
+  width: 100%;
+  height: 33px;
+  margin: 3px 0;
   font-family: Inter;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 14.52px;
 }
 
 .form__input-error_active {
-  display: block;
-  margin-left: 8px;
+  color: red;
+  font-size: .75em;
+  font-weight: 400;
 }
 
 .form__button--save {
@@ -66,7 +66,6 @@
   font-weight: 400;
   line-height: 1.21;
   color: #ffffff;
-  margin-top: 48px;
 }
 
 .form__button--save:hover {
@@ -88,6 +87,11 @@
 }
 
 @media (max-width: 675px) {
+  .form__input-error {
+    min-height: 33px;
+    height: auto;
+  }
+
   .form__title {
     font-size: 1.25rem;
     margin-bottom: 76px;

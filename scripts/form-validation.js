@@ -38,7 +38,7 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const toggleButtonState2 = (inputList, buttonElement) => {
+const toggleButtonStatePopup = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add("form__button-inactive");
   } else {
@@ -49,10 +49,10 @@ const toggleButtonState2 = (inputList, buttonElement) => {
 const setEventListeners = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(".form__input"));
   const buttonElement = formElement.querySelector(".form__submit");
-  toggleButtonState2(inputList, buttonElement);
+  toggleButtonStatePopup(inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      toggleButtonState2(inputList, buttonElement);
+      toggleButtonStatePopup(inputList, buttonElement);
       checkInputValidity(formElement, inputElement);
     });
   });
