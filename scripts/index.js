@@ -68,7 +68,7 @@ initialCards.forEach((item) => {
   cardHandler.addCard();
 });
 
-// Profile Bio Modal Event Listeners
+// Bio Modal Event Listeners
 modals.popup.forEach((container) => {
   container.addEventListener("click", () => {
     toggleModal(modals.edit, false);
@@ -164,6 +164,14 @@ cardsContainer.addEventListener("click", function (event) {
 
 buttons.closeImage.addEventListener("click", () => {
   toggleModal(modals.image, false);
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    toggleModal(modals.image, false);
+    toggleModal(modals.edit, false);
+    toggleModal(modals.add, false);
+  }
 });
 
 // Configuration object for form validation
