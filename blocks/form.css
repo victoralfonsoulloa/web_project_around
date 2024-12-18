@@ -40,7 +40,7 @@
 }
 
 .form__input_type_error {
-  border-color: red;
+  border-bottom: 1.5px solid red !important;
 }
 
 .form__input-error {
