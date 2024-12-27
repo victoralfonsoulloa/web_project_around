@@ -13,9 +13,6 @@
   background-color: black;
   object-fit: cover;
   object-position: center;
-}
-
-.card__image {
   cursor: pointer;
 }
 
