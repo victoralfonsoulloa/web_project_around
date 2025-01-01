@@ -1,11 +1,10 @@
 // Card.js
 
-class Card {
-  constructor(title, imageUrl, templateSelector, cardsContainer) {
+export default class Card {
+  constructor(title, imageUrl, templateSelector) {
     this._title = title;
     this._imageUrl = imageUrl;
     this._templateSelector = templateSelector;
-    this._cardsContainer = cardsContainer;
   }
 
   _getTemplate() {
@@ -16,7 +15,7 @@ class Card {
     return cardTemplate;
   }
 
-  _generateCard() {
+  generateCard() {
     const cardElement = this._getTemplate();
     const imageElement = cardElement.querySelector(".card__image");
     cardElement.querySelector(".card__caption_title").textContent = this._title;
@@ -43,10 +42,5 @@ class Card {
     });
   }
 
-  addCard() {
-    const cardInstance = this._generateCard();
-    this._cardsContainer.prepend(cardInstance);
-  }
 }
 
-export default Card;

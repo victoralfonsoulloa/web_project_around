@@ -1,72 +1,42 @@
 // index.js
 
-import Card from './card.js';
-import FormValidator from './FormValidator.js';
-import { toggleModal, toggleButtonState } from './utils.js';
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import { toggleModal, toggleButtonState } from "../utils/utils.js";
+import {
+  modals,
+  buttons,
+  inputFields,
+  bioName,
+  bioDescription,
+  savedName,
+  savedAboutMe,
+  formEdit,
+  formAdd,
+  cardsContainer,
+  modalImage,
+  modalCaption,
+  initialCards,
+} from "../utils/constants.js";
+import Section from "../components/Section.js";
 
-// Modal Elements
-const modals = {
-  popup: document.querySelectorAll(".popup"),
-  popupContainer: document.querySelectorAll(".popup__container"),
-  edit: document.querySelector("#popup--edit"),
-  form: document.querySelectorAll(".form"),
-  add: document.querySelector("#popup-add"),
-  imageContainer: document.querySelector(".popup__container-image"),
-  image: document.querySelector("#popup_img"),
-};
+const cardList = new Section(
+  {
+    items: initialCards,
+    renderer: (cardItem) => {
+      const cardHandler = new Card(
+        cardItem.name,
+        cardItem.link,
+        "#card-template"
+      );
+      const cardInstance = cardHandler.generateCard();
+      cardList.addItem(cardInstance);
+    },
+  },
+  ".cards"
+);
 
-// Button Elements
-const buttons = {
-  openEdit: document.querySelector("#popup__button--open"),
-  closeEdit: document.querySelector("#popup__button--close"),
-  closeAdd: document.querySelector("#popup__button--close-add"),
-  save: document.querySelector(".form__button--save"),
-  create: document.querySelector("#popup__button--create"),
-  closeImage: document.querySelector("#popup__button--close-img"),
-};
-
-// Input Fields
-const inputFields = {
-  name: document.querySelector("#name"),
-  aboutMe: document.querySelector("#aboutMe"),
-  title: document.querySelector("#title"),
-  image: document.querySelector("#imageUrl"),
-};
-
-// Profile Elements
-let bioName = "Victor Alfonso"; // Default Name
-let bioDescription = "Software Engineer"; // Default Bio
-
-// Elements to display the saved data
-const savedName = document.querySelector(".profile__bio_name");
-const savedAboutMe = document.querySelector(".profile__bio_description");
-
-// Forms
-const formEdit = document.querySelector(".form--edit");
-const formAdd = document.querySelector(".form--add");
-
-// Cards Container
-const cardsContainer = document.querySelector(".cards");
-
-// Modal Image Elements
-const modalImage = modals.image.querySelector(".popup-picture");
-const modalCaption = modals.image.querySelector(".popup-caption");
-
-// Initial Cards Data
-const initialCards = [
-  { name: "Golden Gate Bridge", link: "images/golden-gate.jpg" },
-  { name: "Sunsets in Seattle", link: "images/sunset-in-seattle.jpg" },
-  { name: "Chautauqua Park", link: "images/chautauqua-park.jpg" },
-  { name: "Lombard Street", link: "images/lombard-st.jpg" },
-  { name: "Arizona Desert", link: "images/arizona.jpg" },
-  { name: "Mile 9", link: "images/mile-9.jpg" },
-];
-
-// Populate Initial Cards
-initialCards.forEach((item) => {
-  const cardHandler = new Card(item.name, item.link, "#card-template", cardsContainer);
-  cardHandler.addCard();
-});
+cardList.renderItems();
 
 // Bio Modal Event Listeners
 modals.popup.forEach((container) => {
@@ -141,10 +111,10 @@ formAdd.addEventListener("submit", (event) => {
   const formCardHandler = new Card(
     inputFields.title.value,
     inputFields.image.value,
-    "#card-template",
-    cardsContainer
+    "#card-template"
   );
-  formCardHandler.addCard();
+  const formCardInstance = formCardHandler.generateCard();
+  cardList.addItem(formCardInstance);
   toggleModal(modals.add, false);
 });
 
@@ -166,8 +136,8 @@ buttons.closeImage.addEventListener("click", () => {
   toggleModal(modals.image, false);
 });
 
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
     toggleModal(modals.image, false);
     toggleModal(modals.edit, false);
     toggleModal(modals.add, false);
@@ -181,7 +151,7 @@ const validationConfig = {
   submitButtonSelector: ".form__submit",
   inactiveButtonClass: "form__button-inactive",
   inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_active"
+  errorClass: "form__input-error_active",
 };
 
 const forms = document.querySelectorAll(validationConfig.formSelector);
