@@ -16,18 +16,9 @@ export const inputFields = {
   image: document.querySelector("#imageUrl"),
 };
 
-// Profile Elements
-export const bioData = {
-  bioName: 'Victor Alfonso', // Initialize with default values
-  bioDescription: 'Software Engineer'
-};
-
 // Forms
 export const formEdit = document.querySelector(".form--edit");
 export const formAdd = document.querySelector(".form--add");
-
-// Cards Container
-export const cardsContainer = document.querySelector(".cards");
 
 // Initial Cards Data
 export const initialCards = [
