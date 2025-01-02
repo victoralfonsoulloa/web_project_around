@@ -1,5 +1,3 @@
-// Section.js
-
 export default class Section {
   constructor({ items, renderer }, containerSelector) {
     this._initialArray = items;

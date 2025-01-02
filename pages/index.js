@@ -2,13 +2,8 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import { toggleButtonState } from "../utils/utils.js";
 import {
-  modals,
   buttons,
   inputFields,
-  savedName,
-  savedAboutMe,
-  formEdit,
-  formAdd,
   cardsContainer,
   initialCards,
   bioData
@@ -16,13 +11,17 @@ import {
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+
+// Create UserInfo instance
+const userInfo = new UserInfo('.profile__bio_name','.profile__bio_description');
+
 
 // Create instances of PopupWithForm
 const editPopup = new PopupWithForm('#popup--edit', (formData) => {
   bioData.bioName = formData.name;
   bioData.bioDescription = formData.aboutMe;
-  savedName.textContent = bioData.bioName;
-  savedAboutMe.textContent = bioData.bioDescription;
+  userInfo.setUserInfo(formData.name, formData.aboutMe)
 });
 
 const addPopup = new PopupWithForm('#popup-add', (formData) => {

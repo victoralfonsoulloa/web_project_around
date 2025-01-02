@@ -1,5 +1,3 @@
-// Card.js
-
 export default class Card {
   constructor(title, imageUrl, templateSelector) {
     this._title = title;

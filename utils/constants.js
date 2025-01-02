@@ -1,21 +1,9 @@
-// Modal Elements
-export const modals = {
-  popup: document.querySelectorAll(".popup"),
-  popupContainer: document.querySelectorAll(".popup__container"),
-  edit: document.querySelector("#popup--edit"),
-  form: document.querySelectorAll(".form"),
-  add: document.querySelector("#popup-add"),
-  imageContainer: document.querySelector(".popup__container-image"),
-  image: document.querySelector("#popup_img"),
-};
-
 // Button Elements
 export const buttons = {
   openEdit: document.querySelector("#popup__button--open"),
   closeEdit: document.querySelector("#popup__button--close"),
   openAdd: document.querySelector(".profile__bio_add"),
   closeAdd: document.querySelector("#popup__button--close-add"),
-  save: document.querySelector(".form__button--save"),
   create: document.querySelector("#popup__button--create"),
   closeImage: document.querySelector("#popup__button--close-img"),
 };
@@ -29,17 +17,10 @@ export const inputFields = {
 };
 
 // Profile Elements
-export let bioName = "Victor Alfonso"; // Default Name
-export let bioDescription = "Software Engineer"; // Default Bio
-
 export const bioData = {
   bioName: 'Victor Alfonso', // Initialize with default values
   bioDescription: 'Software Engineer'
 };
-
-// Elements to display the saved data
-export const savedName = document.querySelector(".profile__bio_name");
-export const savedAboutMe = document.querySelector(".profile__bio_description");
 
 // Forms
 export const formEdit = document.querySelector(".form--edit");
