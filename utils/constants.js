@@ -13,6 +13,7 @@ export const modals = {
 export const buttons = {
   openEdit: document.querySelector("#popup__button--open"),
   closeEdit: document.querySelector("#popup__button--close"),
+  openAdd: document.querySelector(".profile__bio_add"),
   closeAdd: document.querySelector("#popup__button--close-add"),
   save: document.querySelector(".form__button--save"),
   create: document.querySelector("#popup__button--create"),
@@ -31,6 +32,11 @@ export const inputFields = {
 export let bioName = "Victor Alfonso"; // Default Name
 export let bioDescription = "Software Engineer"; // Default Bio
 
+export const bioData = {
+  bioName: 'Victor Alfonso', // Initialize with default values
+  bioDescription: 'Software Engineer'
+};
+
 // Elements to display the saved data
 export const savedName = document.querySelector(".profile__bio_name");
 export const savedAboutMe = document.querySelector(".profile__bio_description");
@@ -41,10 +47,6 @@ export const formAdd = document.querySelector(".form--add");
 
 // Cards Container
 export const cardsContainer = document.querySelector(".cards");
-
-// Modal Image Elements
-export const modalImage = modals.image.querySelector(".popup-picture");
-export const modalCaption = modals.image.querySelector(".popup-caption");
 
 // Initial Cards Data
 export const initialCards = [
