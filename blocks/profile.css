@@ -18,7 +18,7 @@
   object-fit: cover;
 }
 
-.profile__bio_name {
+.profile__bio-name {
   display: inline-block;
   font-family: Inter;
   font-size: 2.62rem;
@@ -28,7 +28,23 @@
   color: white;
 }
 
-.profile__bio_description {
+.profile__bio-open-popup {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  cursor: pointer;
+}
+
+.profile__bio-open-popup__image {
+  width: 24px;
+  height: 24px;
+  vertical-align: baseline;
+}
+
+.profile__bio-open-popup__image:hover {
+  opacity: 60%;
+}
+
+.profile__bio-description {
   font-family: Inter;
   font-size: 1.12rem;
   font-weight: 400;
@@ -36,19 +52,19 @@
   color: white;
 }
 
-.profile__bio_add {
+.profile__bio-add {
   border: 2px solid #fff;
   width: 150px;
   height: 50px;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.profile__bio_add:hover {
+.profile__bio-add:hover {
   opacity: 60%;
   cursor: pointer;
 }
 
-.profile__bio_add_button {
+.profile__add-icon {
   width: 22px;
   height: 22px;
 }
@@ -59,7 +75,7 @@
     height: 120px;
   }
 
-  .profile__bio_name {
+  .profile__bio-name {
     display: inline-block;
     font-family: Inter;
     font-size: 1.8rem;
@@ -69,12 +85,12 @@
     color: white;
   }
 
-  .profile__bio_description {
+  .profile__bio-description {
     font-size: 1rem;
     line-height: 1.21;
   }
 
-  .profile__bio_add {
+  .profile__bio-add {
     width: 115px;
     height: 50px;
   }
@@ -103,7 +119,7 @@
     flex-direction: column;
   }
 
-  .profile__bio_name {
+  .profile__bio-name {
     display: inline-block;
     font-size: 1.37rem;
     font-weight: 500;
@@ -112,7 +128,12 @@
     color: white;
   }
 
-  .profile__bio_description {
+  .profile__bio-open-popup__image {
+    width: 18px;
+    height: 18px;
+  }
+
+  .profile__bio-description {
     font-size: 0.875rem;
     margin-top: 0;
     font-weight: 400;

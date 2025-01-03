@@ -1,11 +1,7 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import { toggleButtonState } from "../utils/utils.js";
-import {
-  buttons,
-  inputFields,
-  initialCards,
-} from "../utils/constants.js";
+import { buttons, inputFields, initialCards } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -17,15 +13,17 @@ function handleCardClick(imageUrl, title) {
 }
 
 // Create UserInfo instance
-const userInfo = new UserInfo('.profile__bio_name','.profile__bio_description');
-
+const userInfo = new UserInfo(
+  ".profile__bio-name",
+  ".profile__bio-description"
+);
 
 // Create instances of PopupWithForm
-const editPopup = new PopupWithForm('#popup--edit', (formData) => {
-  userInfo.setUserInfo(formData.name, formData.aboutMe)
+const editPopup = new PopupWithForm("#popup--edit", (formData) => {
+  userInfo.setUserInfo(formData.name, formData.aboutMe);
 });
 
-const addPopup = new PopupWithForm('#popup-add', (formData) => {
+const addPopup = new PopupWithForm("#popup-add", (formData) => {
   const formCardHandler = new Card(
     formData.title,
     formData.image,
@@ -40,7 +38,7 @@ editPopup.setEventListeners();
 addPopup.setEventListeners();
 
 // Create instance of PopupWithImage
-const imagePopup = new PopupWithImage('#popup_img');
+const imagePopup = new PopupWithImage("#popup_img");
 imagePopup.setEventListeners();
 
 const cardList = new Section(
@@ -96,7 +94,7 @@ buttons.closeImage.addEventListener("click", () => {
 const validationConfig = {
   formSelector: ".form",
   inputSelector: ".form__input",
-  submitButtonSelector: ".form__submit",
+  submitButtonSelector: ".form__button--submit",
   inactiveButtonClass: "form__button-inactive",
   inputErrorClass: "form__input_type_error",
   errorClass: "form__input-error_active",

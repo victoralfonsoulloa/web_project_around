@@ -35,19 +35,22 @@
               class="profile__avatar"
             />
             <div class="profile__bio">
-              <div class="profile__bio_container">
-                <h1 class="profile__bio_name">Victor Alfonso</h1>
-                <button class="popup__button--open" id="popup__button--open">
+              <div class="profile__bio-container">
+                <h1 class="profile__bio-name">Victor Alfonso</h1>
+                <button
+                  class="profile__bio-open-popup"
+                  id="profile__bio-open-popup"
+                >
                   <img
                     src="images/edit-button.png"
                     alt="Edit button"
-                    class="popup__button_image"
+                    class="profile__bio-open-popup__image"
                   />
                 </button>
 
                 <div class="popup popup_type_edit" id="popup--edit">
                   <div class="popup__container">
-                    <form class="form form--edit">
+                    <form class="form" id="form--edit">
                       <fieldset class="form__fieldset">
                         <h2 class="form__title">Edit Profile</h2>
                         <label for="form__field">
@@ -78,38 +81,38 @@
                         </label>
                         <button
                           type="submit"
-                          class="form__button--save form__submit"
+                          class="form__button form__button--submit"
                         >
                           Save
                         </button>
                       </fieldset>
                     </form>
                     <button
-                      class="popup__button--close"
-                      id="popup__button--close"
+                      class="popup__button-close"
+                      id="popup__button-close"
                     >
                       <img
                         src="images/close-button.png"
                         alt="button-close_icon"
-                        class="popup__button--close-icon"
+                        class="popup__button-icon"
                       />
                     </button>
                   </div>
                 </div>
               </div>
-              <h2 class="profile__bio_description">Software Engineer</h2>
+              <h2 class="profile__bio-description">Software Engineer</h2>
             </div>
           </div>
-          <button class="profile__bio_add">
+          <button class="profile__bio-add">
             <img
               src="images/add-button.png"
               alt="Add button"
-              class="profile__bio_add_button"
+              class="profile__add-icon"
             />
           </button>
           <div class="popup popup_type_add" id="popup-add">
             <div class="popup__container">
-              <form class="form form--add">
+              <form class="form" id="form--add">
                 <fieldset class="form__fieldset">
                   <h2 class="form__title">New Place</h2>
                   <label class="form__field">
@@ -139,7 +142,7 @@
                   </label>
                   <button
                     type="submit"
-                    class="form__button--save popup__button--create form__submit"
+                    class="form__button popup__button--create form__button--submit"
                     id="popup__button--create"
                   >
                     Create
@@ -148,13 +151,13 @@
               </form>
               <button
                 type="button"
-                class="popup__button--close"
-                id="popup__button--close-add"
+                class="popup__button-close"
+                id="popup__button-close-add"
               >
                 <img
                   src="images/close-button.png"
                   alt="button-close_icon"
-                  class="popup__button--close-icon"
+                  class="popup__button-icon"
                 />
               </button>
             </div>
@@ -171,13 +174,13 @@
             <p class="popup-caption"></p>
             <button
               type="button"
-              class="popup__button--close"
-              id="popup__button--close-img"
+              class="popup__button-close"
+              id="popup__button-close-img"
             >
               <img
                 src="images/close-button.png"
                 alt="button-close_icon"
-                class="popup__button--close-icon"
+                class="popup__button-icon"
               />
             </button>
           </div>

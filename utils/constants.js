@@ -1,11 +1,11 @@
 // Button Elements
 export const buttons = {
-  openEdit: document.querySelector("#popup__button--open"),
-  closeEdit: document.querySelector("#popup__button--close"),
-  openAdd: document.querySelector(".profile__bio_add"),
-  closeAdd: document.querySelector("#popup__button--close-add"),
+  openEdit: document.querySelector("#profile__bio-open-popup"),
+  closeEdit: document.querySelector("#popup__button-close"),
+  openAdd: document.querySelector(".profile__bio-add"),
+  closeAdd: document.querySelector("#popup__button-close-add"),
   create: document.querySelector("#popup__button--create"),
-  closeImage: document.querySelector("#popup__button--close-img"),
+  closeImage: document.querySelector("#popup__button-close-img"),
 };
 
 // Input Fields
@@ -17,8 +17,8 @@ export const inputFields = {
 };
 
 // Forms
-export const formEdit = document.querySelector(".form--edit");
-export const formAdd = document.querySelector(".form--add");
+export const formEdit = document.querySelector("#form--edit");
+export const formAdd = document.querySelector("#form--add");
 
 // Initial Cards Data
 export const initialCards = [

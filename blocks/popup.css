@@ -1,5 +1,5 @@
 .popup {
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   display: flex;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 10;
@@ -36,7 +36,7 @@
   position: relative;
 }
 
-.popup-picture{
+.popup-picture {
   max-width: 75vw;
   max-height: 75vh;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -57,23 +57,7 @@
   line-height: 1.14;
 }
 
-.popup__button--open {
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  cursor: pointer;
-}
-
-.popup__button_image {
-  width: 24px;
-  height: 24px;
-  vertical-align: baseline;
-}
-
-.popup__button_image:hover {
-  opacity: 60%;
-}
-
-.popup__button--close {
+.popup__button-close {
   position: absolute;
   top: -50px;
   right: -50px;
@@ -82,15 +66,14 @@
   cursor: pointer;
 }
 
-.popup__button--close-icon {
+.popup__button-icon {
   width: 40px;
   height: 40px;
 }
 
-.popup__button--close-icon:hover {
+.popup__button-icon:hover {
   opacity: 60%;
 }
-
 
 @media (max-width: 675px) {
   .popup__container {
@@ -99,17 +82,12 @@
     max-width: 282px;
   }
 
-  .popup__button_image {
-    width: 18px;
-    height: 18px;
-  }
-
-  .popup__button--close {
+  .popup__button-close {
     top: -50px;
     right: 0;
   }
 
-  .popup__button--close-icon {
+  .popup__button-icon {
     width: 26px;
     height: 26px;
   }
