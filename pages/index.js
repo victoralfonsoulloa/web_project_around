@@ -75,10 +75,9 @@ buttons.closeEdit.addEventListener("click", (event) => {
 
 // Event listener for opening and closing add popup
 buttons.openAdd.addEventListener("click", () => {
-  addPopup.open();
   inputFields.title.value = "";
   inputFields.image.value = "";
-  toggleButtonState(buttons.create, [inputFields.title, inputFields.image]);
+  addPopup.open();
 });
 
 buttons.closeAdd.addEventListener("click", () => {
@@ -94,7 +93,7 @@ buttons.closeImage.addEventListener("click", () => {
 const validationConfig = {
   formSelector: ".form",
   inputSelector: ".form__input",
-  submitButtonSelector: "#form__button-edit",
+  submitButtonSelector: "#form__button",
   inactiveButtonClass: "form__button-inactive",
   inputErrorClass: "form__input_type_error",
   errorClass: "form__input-error_active",
