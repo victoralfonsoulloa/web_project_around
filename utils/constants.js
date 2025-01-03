@@ -4,7 +4,7 @@ export const buttons = {
   closeEdit: document.querySelector("#popup__button-close"),
   openAdd: document.querySelector(".profile__bio-add"),
   closeAdd: document.querySelector("#popup__button-close-add"),
-  create: document.querySelector("#popup__button--create"),
+  create: document.querySelector("#form__button-add"),
   closeImage: document.querySelector("#popup__button-close-img"),
 };
 
