@@ -34,13 +34,13 @@
   cursor: pointer;
 }
 
-.profile__bio-open-popup__image {
+.profile__bio-open-icon {
   width: 24px;
   height: 24px;
   vertical-align: baseline;
 }
 
-.profile__bio-open-popup__image:hover {
+.profile__bio-open-icon:hover {
   opacity: 60%;
 }
 
@@ -128,7 +128,7 @@
     color: white;
   }
 
-  .profile__bio-open-popup__image {
+  .profile__bio-open-icon {
     width: 18px;
     height: 18px;
   }
