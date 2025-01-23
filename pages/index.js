@@ -1,11 +1,12 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import { toggleButtonState } from "../utils/utils.js";
-import { buttons, inputFields, initialCards } from "../utils/constants.js";
+import { toggleButtonState, handleServerRequest } from "../utils/utils.js";
+import { buttons, inputFields} from "../utils/constants.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import { api } from "../components/Api.js";
 
 // Function for Opening popup image
 function handleCardClick(imageUrl, title) {
@@ -41,8 +42,9 @@ addPopup.setEventListeners();
 const imagePopup = new PopupWithImage("#popup_img");
 imagePopup.setEventListeners();
 
-const cardList = new Section(
-  {
+// Add initial cards to the page
+handleServerRequest({request: api.getInitialCards(), handler: (initialCards) => {
+  const cardList = new Section({
     items: initialCards,
     renderer: (cardItem) => {
       const cardHandler = new Card(
@@ -54,11 +56,9 @@ const cardList = new Section(
       const cardInstance = cardHandler.generateCard();
       cardList.addItem(cardInstance);
     },
-  },
-  ".cards"
-);
-
-cardList.renderItems();
+  }, ".cards");
+  cardList.renderItems();
+}});
 
 // Event listeners for opening and closing edit popup
 buttons.openEdit.addEventListener("click", () => {

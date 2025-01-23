@@ -19,13 +19,3 @@ export const inputFields = {
 // Forms
 export const formEdit = document.querySelector("#form--edit");
 export const formAdd = document.querySelector("#form--add");
-
-// Initial Cards Data
-export const initialCards = [
-  { name: "Golden Gate Bridge", link: "images/golden-gate.jpg" },
-  { name: "Sunsets in Seattle", link: "images/sunset-in-seattle.jpg" },
-  { name: "Chautauqua Park", link: "images/chautauqua-park.jpg" },
-  { name: "Lombard Street", link: "images/lombard-st.jpg" },
-  { name: "Arizona Desert", link: "images/arizona.jpg" },
-  { name: "Mile 9", link: "images/mile-9.jpg" },
-];
