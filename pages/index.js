@@ -1,7 +1,7 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import { toggleButtonState, handleServerRequest } from "../utils/utils.js";
-import { buttons, inputFields} from "../utils/constants.js";
+import { buttons, inputFields } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -19,22 +19,58 @@ const userInfo = new UserInfo(
   ".profile__bio-description"
 );
 
-// Create instances of PopupWithForm
+// Get user info from the server and set it in the profile
+handleServerRequest({
+  request: api.getUserInfo(),
+  handler: (userData) => {
+    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserId(userData._id);
+    userInfo.setUserAvatar(userData.avatar);
+  },
+});
+
+// Create instance of PopupWithForm for editing user info
 const editPopup = new PopupWithForm("#popup--edit", (formData) => {
-  userInfo.setUserInfo(formData.name, formData.aboutMe);
+  handleServerRequest({
+    request: api.editUserInfo(
+      inputFields.name.value,
+      inputFields.aboutMe.value
+    ),
+    handler: (formData) => {
+      userInfo.setUserInfo(formData.name, formData.aboutMe);
+    },
+  });
 });
 
+// Create instance of PopupWithForm for adding a new card
 const addPopup = new PopupWithForm("#popup-add", (formData) => {
-  const formCardHandler = new Card(
-    formData.title,
-    formData.image,
-    "#card-template",
-    handleCardClick
-  );
-  const formCardInstance = formCardHandler.generateCard();
-  cardList.addItem(formCardInstance);
-});
+  handleServerRequest({
+    request: api.addNewCard(formData.title, formData.image),
+    handler: (newCardData) => {
+      // Create a new card instance
+      const cardHandler = new Card(
+        newCardData.name, // Assuming the server responds with `name`
+        newCardData.link, // Assuming the server responds with `link`
+        "#card-template",
+        handleCardClick
+      );
+      const cardInstance = cardHandler.generateCard();
 
+      // Add the new card to the section
+      const cardSection = new Section(
+        {
+          items: [cardInstance], // Add the new card directly
+          renderer: (cardItem) => {
+            cardSection.addItem(cardItem); // Use addItem to render it
+          },
+        },
+        ".cards"
+      );
+
+      cardSection.renderItems(); // Render the new card
+    },
+  });
+});
 editPopup.setEventListeners();
 addPopup.setEventListeners();
 
@@ -43,22 +79,28 @@ const imagePopup = new PopupWithImage("#popup_img");
 imagePopup.setEventListeners();
 
 // Add initial cards to the page
-handleServerRequest({request: api.getInitialCards(), handler: (initialCards) => {
-  const cardList = new Section({
-    items: initialCards,
-    renderer: (cardItem) => {
-      const cardHandler = new Card(
-        cardItem.name,
-        cardItem.link,
-        "#card-template",
-        handleCardClick
-      );
-      const cardInstance = cardHandler.generateCard();
-      cardList.addItem(cardInstance);
-    },
-  }, ".cards");
-  cardList.renderItems();
-}});
+handleServerRequest({
+  request: api.getInitialCards(),
+  handler: (initialCards) => {
+    const cardList = new Section(
+      {
+        items: initialCards,
+        renderer: (cardItem) => {
+          const cardHandler = new Card(
+            cardItem.name,
+            cardItem.link,
+            "#card-template",
+            handleCardClick
+          );
+          const cardInstance = cardHandler.generateCard();
+          cardList.addItem(cardInstance);
+        },
+      },
+      ".cards"
+    );
+    cardList.renderItems();
+  },
+});
 
 // Event listeners for opening and closing edit popup
 buttons.openEdit.addEventListener("click", () => {

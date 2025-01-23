@@ -17,3 +17,24 @@ export default class Section {
 }
 
 
+// handler: (formData) => {
+//       const newCard = new Section(
+//         {
+//           items: card,
+//           renderer: (cardItem) => {
+//             const cardHandler = new Card(
+//               formData.name,
+//               formData.link,
+//               "#card-template",
+//               handleCardClick
+//             );
+//             const cardInstance = cardHandler.generateCard();
+//             cardList.addItem(cardInstance);
+//           },
+//         },
+//         ".cards"
+//       );
+//       newCard.renderItems();
+//     },
+//   });
+// }

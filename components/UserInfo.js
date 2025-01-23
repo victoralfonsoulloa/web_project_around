@@ -17,5 +17,13 @@ export default class UserInfo {
     this._userNameElement.textContent = name;
     this._userJobElement.textContent = userJob;
   }
+
+  setUserId(userId) {
+    this._userId = userId;
+  }
+
+  setUserAvatar(userAvatar) {
+    this._userAvatar = userAvatar;
+  }
 }
 
