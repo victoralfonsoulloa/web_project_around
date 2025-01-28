@@ -1,12 +1,3 @@
-function toggleModal(modal, isOpen) {
-  modal.classList.toggle("popup--show", isOpen);
-}
-
-function toggleButtonState(button, fields) {
-  const isDisabled = fields.some((field) => field.value === "");
-  button.disabled = isDisabled;
-}
-
 // Function to handle server requests
 function handleServerRequest({ request, handler }) {
   return request
@@ -18,5 +9,5 @@ function handleServerRequest({ request, handler }) {
     });
 }
 
-export { toggleModal, toggleButtonState, handleServerRequest };
+export { handleServerRequest };
 

@@ -1,9 +1,10 @@
 export default class Card {
-  constructor(title, imageUrl, templateSelector, handleCardClick) {
+  constructor(title, imageUrl, templateSelector, handleCardClick, handleCardDelete) {
     this._title = title;
     this._imageUrl = imageUrl;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick; // Passed function for opening the popup
+    this._handleCardDelete = handleCardDelete;
   }
 
   _getTemplate() {
@@ -15,13 +16,17 @@ export default class Card {
   }
 
   generateCard() {
-    const cardElement = this._getTemplate();
-    const imageElement = cardElement.querySelector(".card__image");
-    cardElement.querySelector(".card__caption_title").textContent = this._title;
+    this._cardElement = this._getTemplate();
+    const imageElement = this._cardElement.querySelector(".card__image");
+    this._cardElement.querySelector(".card__caption_title").textContent = this._title;
     imageElement.src = this._imageUrl;
     imageElement.alt = this._title;
-    this._setEventListeners(cardElement, imageElement);
-    return cardElement;
+    this._setEventListeners(this._cardElement, imageElement);
+    return this._cardElement;
+  }
+
+  removeCard() {
+    this._cardElement.remove();
   }
 
   _setEventListeners(cardElement, imageElement) {
@@ -41,7 +46,7 @@ export default class Card {
     // Handle card deletion
     const deleteButton = cardElement.querySelector(".card__delete-image");
     deleteButton.addEventListener("click", () => {
-      cardElement.remove();
+      this._handleCardDelete();
     });
   }
 }

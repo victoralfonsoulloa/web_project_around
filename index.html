@@ -29,11 +29,58 @@
         </header>
         <section class="profile">
           <div class="profile__container">
-            <img
-              src="images/profile__avatar.jpg"
-              alt="A profile picture"
-              class="profile__avatar"
-            />
+            <div class="profile__image">
+              <img
+                src=""
+                alt="A profile picture"
+                class="profile__image-user"
+                id="profile__image-user"
+              />
+              <img src="images/edit_icon.svg" alt="Edit profile" class="profile__image-edit" />
+            </div>
+            <div
+              class="popup popup_type_change_avatar"
+              id="popup-change_avatar"
+            >
+              <div class="popup__container">
+                <form class="form" id="form--add">
+                  <fieldset class="form__fieldset">
+                    <h2 class="form__title">Change Profile Picture</h2>
+                    <label class="form__field">
+                      <input
+                        type="url"
+                        placeholder="Image URL"
+                        name="image"
+                        class="form__input"
+                        id="avatar"
+                        pattern="https://.*"
+                        required
+                      />
+                      <span class="form__input-error imageUrl-error"></span>
+                    </label>
+                    <button
+                      type="submit"
+                      class="form__button"
+                      id="form__button"
+                    >
+                      Save
+                    </button>
+                  </fieldset>
+                </form>
+                <button
+                  type="button"
+                  class="popup__button-close"
+                  id="popup__button-close-change-avatar"
+                >
+                  <img
+                    src="images/close-button.png"
+                    alt="button-close_icon"
+                    class="popup__button-icon"
+                  />
+                </button>
+              </div>
+            </div>
+
             <div class="profile__bio">
               <div class="profile__bio-container">
                 <h1 class="profile__bio-name"></h1>
@@ -141,11 +188,7 @@
                     />
                     <span class="form__input-error imageUrl-error"></span>
                   </label>
-                  <button
-                    type="submit"
-                    class="form__button"
-                    id="form__button"
-                  >
+                  <button type="submit" class="form__button" id="form__button">
                     Create
                   </button>
                 </fieldset>
@@ -168,7 +211,7 @@
         <div class="popup popup_type_image" id="popup_img">
           <div class="popup__container-image">
             <img
-              src="images/profile__avatar.jpg"
+              src=""
               class="popup-picture"
               alt=""
             />
@@ -177,6 +220,30 @@
               type="button"
               class="popup__button-close"
               id="popup__button-close-img"
+            >
+              <img
+                src="images/close-button.png"
+                alt="button-close_icon"
+                class="popup__button-icon"
+              />
+            </button>
+          </div>
+        </div>
+
+        <div class="popup popup_type_delete_card" id="popup_delete_card">
+          <div class="popup__container">
+            <form class="form" id="form--delete_card">
+              <fieldset class="form__fieldset">
+                <h2 class="form__title">Are you sure?</h2>
+                <button type="submit" class="form__button" id="form__button">
+                  Save
+                </button>
+              </fieldset>
+            </form>
+            <button
+              type="button"
+              class="popup__button-close"
+              id="popup__button-close-delete_card"
             >
               <img
                 src="images/close-button.png"
