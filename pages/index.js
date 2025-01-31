@@ -145,11 +145,6 @@ buttons.openEdit.addEventListener("click", () => {
   editPopup.open();
 });
 
-buttons.closeEdit.addEventListener("click", (event) => {
-  event.preventDefault();
-  editPopup.close();
-});
-
 // Event listener for opening and closing add popup
 buttons.openAdd.addEventListener("click", () => {
   inputFields.title.value = "";
@@ -157,22 +152,11 @@ buttons.openAdd.addEventListener("click", () => {
   addPopup.open();
 });
 
-buttons.closeAdd.addEventListener("click", () => {
-  addPopup.close();
-});
-
-// Event listener for closing image popup
-buttons.closeImage.addEventListener("click", () => {
-  imagePopup.close();
-});
 
 // Event listener for opening and closing avatar popup
 buttons.openAvatar.addEventListener("click", () => {
+  inputFields.avatar.value = "";
   avatarPopup.open();
-});
-
-buttons.closeAvatar.addEventListener("click", () => {
-  avatarPopup.close();
 });
 
 // Configuration object for form validation

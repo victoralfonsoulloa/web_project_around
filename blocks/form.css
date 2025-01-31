@@ -1,5 +1,7 @@
 .form__fieldset {
   border: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
 }
@@ -94,6 +96,5 @@
 
   .form__title {
     font-size: 1.25rem;
-    margin-bottom: 76px;
   }
 }
