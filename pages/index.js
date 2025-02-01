@@ -1,6 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import {handleServerRequest } from "../utils/utils.js";
+import { handleServerRequest } from "../utils/utils.js";
 import { buttons, inputFields } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -60,43 +60,45 @@ const addPopup = new PopupWithForm("#popup-add", (formData) => {
   handleServerRequest({
     request: api.addNewCard(formData.title, formData.image),
     handler: (newCardData) => {
-      // Create a new card instance
-      const cardHandler = new Card(
-        newCardData.name, // Assuming the server responds with `name`
-        newCardData.link, // Assuming the server responds with `link`
-        "#card-template",
-        handleCardClick,
-        () => {
-          deleteCardPopup.open(newCardData._id, () => {cardHandler.removeCard()});
-        }
-      );
-      const cardInstance = cardHandler.generateCard();
-
-      // Add the new card to the section
       const cardSection = new Section(
         {
-          items: [cardInstance], // Add the new card directly
+          items: [newCardData], // Add the new card directly
           renderer: (cardItem) => {
-            cardSection.addItem(cardItem); // Use addItem to render it
+            // Create a new card instance
+            const cardHandler = new Card(
+              cardItem.name,
+              cardItem.link,
+              "#card-template",
+              handleCardClick,
+              () => {
+                deleteCardPopup.open(newCardData._id, () => {
+                  cardHandler.removeCard();
+                });
+              }
+            );
+            const cardInstance = cardHandler.generateCard();
+            cardSection.addItem(cardInstance); // Use addItem to render it
           },
         },
         ".cards"
       );
-
       cardSection.renderItems(); // Render the new card
     },
   });
 });
 
 //Create instance of PopupWithConfirmation for deleting a card
-const deleteCardPopup = new PopupWithConfirmation("#popup_delete_card", (formData, handlerOnDelete) => {
-  handleServerRequest({
-    request: api.deleteCard(formData),
-    handler: (formData) => {
-      handlerOnDelete();
-    },
-  });
-});
+const deleteCardPopup = new PopupWithConfirmation(
+  "#popup_delete_card",
+  (formData, handlerOnDelete) => {
+    handleServerRequest({
+      request: api.deleteCard(formData),
+      handler: (formData) => {
+        handlerOnDelete();
+      },
+    });
+  }
+);
 
 editPopup.setEventListeners();
 addPopup.setEventListeners();
@@ -114,7 +116,7 @@ handleServerRequest({
     // console.log(initialCards);
     const cardList = new Section(
       {
-        items: initialCards,
+        items: initialCards.reverse(),
         renderer: (cardItem) => {
           const cardHandler = new Card(
             cardItem.name,
@@ -151,7 +153,6 @@ buttons.openAdd.addEventListener("click", () => {
   inputFields.image.value = "";
   addPopup.open();
 });
-
 
 // Event listener for opening and closing avatar popup
 buttons.openAvatar.addEventListener("click", () => {

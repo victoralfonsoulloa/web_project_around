@@ -1,10 +1,11 @@
 export default class Card {
-  constructor(title, imageUrl, templateSelector, handleCardClick, handleCardDelete) {
+  constructor(title, imageUrl, templateSelector, handleCardClick, handleCardDelete, isLiked) {
     this._title = title;
     this._imageUrl = imageUrl;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick; // Passed function for opening the popup
     this._handleCardDelete = handleCardDelete;
+    this._isLiked = isLiked;
   }
 
   _getTemplate() {
