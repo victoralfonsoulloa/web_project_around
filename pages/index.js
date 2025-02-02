@@ -56,33 +56,38 @@ const avatarPopup = new PopupWithForm("#popup-change_avatar", (formData) => {
 });
 
 // Create instance of PopupWithForm for adding a new card
+// Create instance of PopupWithForm for adding a new card
 const addPopup = new PopupWithForm("#popup-add", (formData) => {
   handleServerRequest({
     request: api.addNewCard(formData.title, formData.image),
     handler: (newCardData) => {
-      const cardSection = new Section(
-        {
-          items: [newCardData], // Add the new card directly
-          renderer: (cardItem) => {
-            // Create a new card instance
-            const cardHandler = new Card(
-              cardItem.name,
-              cardItem.link,
-              "#card-template",
-              handleCardClick,
-              () => {
-                deleteCardPopup.open(newCardData._id, () => {
-                  cardHandler.removeCard();
-                });
-              }
-            );
-            const cardInstance = cardHandler.generateCard();
-            cardSection.addItem(cardInstance); // Use addItem to render it
-          },
+      console.log(newCardData);
+
+      const cardHandler = new Card(
+        newCardData.name,
+        newCardData.link,
+        "#card-template",
+        handleCardClick,
+        () => {
+          deleteCardPopup.open(newCardData._id, () => {
+            cardHandler.removeCard();
+          });
         },
-        ".cards"
+        (cardId, isLiked) => {  // Correctly passing handleLikeToggle
+          const apiRequest = isLiked ? api.removeLike(cardId) : api.addLike(cardId);
+
+          return apiRequest
+            .then((updatedCard) => {
+              return updatedCard;
+            })
+            .catch((err) => console.log(`Like error: ${err}`));
+        },
+        newCardData.isLiked,
+        newCardData._id
       );
-      cardSection.renderItems(); // Render the new card
+
+      const cardInstance = cardHandler.generateCard();
+      document.querySelector(".cards").prepend(cardInstance);
     },
   });
 });
@@ -93,7 +98,7 @@ const deleteCardPopup = new PopupWithConfirmation(
   (formData, handlerOnDelete) => {
     handleServerRequest({
       request: api.deleteCard(formData),
-      handler: (formData) => {
+      handler: () => {
         handlerOnDelete();
       },
     });
@@ -113,7 +118,7 @@ imagePopup.setEventListeners();
 handleServerRequest({
   request: api.getInitialCards(),
   handler: (initialCards) => {
-    // console.log(initialCards);
+    console.log(initialCards);
     const cardList = new Section(
       {
         items: initialCards.reverse(),
@@ -127,7 +132,18 @@ handleServerRequest({
               deleteCardPopup.open(cardItem._id, () => {
                 cardHandler.removeCard();
               });
-            }
+            },
+            (cardId, isLiked) => {  // Correctly passing handleLikeToggle
+              const apiRequest = isLiked ? api.removeLike(cardId) : api.addLike(cardId);
+
+              return apiRequest
+                .then((updatedCard) => {
+                  return updatedCard;
+                })
+                .catch((err) => console.log(`Like error: ${err}`));
+            },
+            cardItem.isLiked,
+            cardItem._id
           );
           const cardInstance = cardHandler.generateCard();
           cardList.addItem(cardInstance);
