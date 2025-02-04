@@ -1,5 +1,5 @@
 class Api {
-  constructor({baseUrl, headers}) {
+  constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
@@ -11,7 +11,6 @@ class Api {
       if (res.ok) {
         return res.json();
       }
-
       return Promise.reject(`Error: ${res.status}`);
     });
   }
@@ -23,7 +22,6 @@ class Api {
       if (res.ok) {
         return res.json();
       }
-
       return Promise.reject(`Error: ${res.status}`);
     });
   }
@@ -40,7 +38,6 @@ class Api {
       if (res.ok) {
         return res.json();
       }
-
       return Promise.reject(`Error: ${res.status}`);
     });
   }
@@ -57,7 +54,6 @@ class Api {
       if (res.ok) {
         return res.json();
       }
-
       return Promise.reject(`Error: ${res.status}`);
     });
   }
@@ -70,7 +66,6 @@ class Api {
       if (res.ok) {
         return res.json();
       }
-
       return Promise.reject(`Error: ${res.status}`);
     });
   }
@@ -84,38 +79,33 @@ class Api {
       if (res.ok) {
         return res.json();
       }
-
       return Promise.reject(`Error: ${res.status}`);
     });
   }
 
-    // Method to add "like" to a card
-    addLike(cardId) {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: "PUT",
-        headers: this._headers,
-      }).then((res) => {
-        if (res.ok) {
-          return res.json();  // This will return the updated card data
-        }
+  addLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 
-        return Promise.reject(`Error: ${res.status}`);
-      });
-    }
-
-    // Method to remove "like" from a card
-    removeLike(cardId) {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: "DELETE",
-        headers: this._headers,
-      }).then((res) => {
-        if (res.ok) {
-          return res.json();  // This will return the updated card data
-        }
-
-        return Promise.reject(`Error: ${res.status}`);
-      });
-    }
+  removeLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 }
 
 export const api = new Api({
@@ -125,3 +115,4 @@ export const api = new Api({
     "Content-Type": "application/json",
   },
 });
+

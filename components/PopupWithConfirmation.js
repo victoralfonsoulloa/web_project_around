@@ -4,20 +4,34 @@ export default class PopupWithConfirmation extends Popup {
   constructor(popupSelector, deleteFunction) {
     super(popupSelector);
     this._delete = deleteFunction;
+    this._submitButton = this._popup.querySelector('.form__button');
   }
 
-  // Abre PopUp y recibe el evt.target del elemento, para acceder a su nodo padre
   open(elementId, handlerOnDelete) {
     super.open();
     this._elementId = elementId;
-    this._handlerOndelete = handlerOnDelete;
+    this._handlerOnDelete = handlerOnDelete;
   }
 
-  // Añade detector de eventos al botón para borrar elemento
+  _updateButtonState(text, disabled) {
+    this._submitButton.textContent = text;
+    this._submitButton.disabled = disabled;
+  }
+
   setEventListeners() {
     super.setEventListeners();
-    this._popup.querySelector(".form__button").addEventListener("click", () => {
-      this._delete(this._elementId, this._handlerOndelete);
-      this.close();
+    this._submitButton.addEventListener('click', () => {
+      this._updateButtonState('Deleting...', true);
+      this._delete(this._elementId, this._handlerOnDelete)
+        .then(() => {
+          this.close();
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        })
+        .finally(() => {
+          this._updateButtonState('Delete', false);
+        });
     });
-  }}
+  }
+}

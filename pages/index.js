@@ -27,14 +27,12 @@ handleServerRequest({
   handler: (userData) => {
     userInfo.setUserInfo(userData.name, userData.about);
     userInfo.setUserAvatar(userData.avatar);
-    // userInfo.setUserId(userData._id);
-    // userInfo.setUserAvatar(userData.avatar);
   },
 });
 
 // Create instance of PopupWithForm for editing user info
 const editPopup = new PopupWithForm("#popup--edit", (formData) => {
-  handleServerRequest({
+  return handleServerRequest({
     request: api.editUserInfo(
       inputFields.name.value,
       inputFields.aboutMe.value
@@ -47,7 +45,7 @@ const editPopup = new PopupWithForm("#popup--edit", (formData) => {
 
 // Create instance of PopupWithForm for editing user avatar
 const avatarPopup = new PopupWithForm("#popup-change_avatar", (formData) => {
-  handleServerRequest({
+  return handleServerRequest({
     request: api.changeProfilePicture(inputFields.avatar.value),
     handler: (formData) => {
       userInfo.setUserAvatar(formData.avatar);
@@ -56,9 +54,8 @@ const avatarPopup = new PopupWithForm("#popup-change_avatar", (formData) => {
 });
 
 // Create instance of PopupWithForm for adding a new card
-// Create instance of PopupWithForm for adding a new card
 const addPopup = new PopupWithForm("#popup-add", (formData) => {
-  handleServerRequest({
+  return handleServerRequest({
     request: api.addNewCard(formData.title, formData.image),
     handler: (newCardData) => {
       console.log(newCardData);
@@ -73,7 +70,7 @@ const addPopup = new PopupWithForm("#popup-add", (formData) => {
             cardHandler.removeCard();
           });
         },
-        (cardId, isLiked) => {  // Correctly passing handleLikeToggle
+        (cardId, isLiked) => {
           const apiRequest = isLiked ? api.removeLike(cardId) : api.addLike(cardId);
 
           return apiRequest
@@ -95,9 +92,9 @@ const addPopup = new PopupWithForm("#popup-add", (formData) => {
 //Create instance of PopupWithConfirmation for deleting a card
 const deleteCardPopup = new PopupWithConfirmation(
   "#popup_delete_card",
-  (formData, handlerOnDelete) => {
-    handleServerRequest({
-      request: api.deleteCard(formData),
+  (elementId, handlerOnDelete) => {
+    return handleServerRequest({
+      request: api.deleteCard(elementId),
       handler: () => {
         handlerOnDelete();
       },
@@ -118,7 +115,6 @@ imagePopup.setEventListeners();
 handleServerRequest({
   request: api.getInitialCards(),
   handler: (initialCards) => {
-    console.log(initialCards);
     const cardList = new Section(
       {
         items: initialCards.reverse(),
