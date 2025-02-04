@@ -36,8 +36,8 @@ export default class Card {
   _updateLikeButton() {
     const likeButton = this._cardElement.querySelector(".card__caption-like_icon");
     likeButton.src = this._isLiked
-      ? "images/like-button_active.png"
-      : "images/like-button.png";
+      ? "../images/like-button_active.png"
+      : "../images/like-button.png";
   }
 
   _setEventListeners(cardElement, imageElement) {

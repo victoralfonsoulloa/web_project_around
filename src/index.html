@@ -13,8 +13,8 @@
     <meta name="author" content="Victor Ulloa" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="src/index.css" />
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="index.css" />
     <title>Around the US</title>
   </head>
   <body>
@@ -22,7 +22,7 @@
       <main class="main">
         <header class="header">
           <img
-            src="images/logo.png"
+            src="../images/logo.png"
             alt="Around the U.S logo"
             class="header__logo"
           />
@@ -36,7 +36,11 @@
                 class="profile__image-user"
                 id="profile__image-user"
               />
-              <img src="images/edit_icon.svg" alt="Edit profile" class="profile__image-edit" />
+              <img
+                src="../images/edit_icon.svg"
+                alt="Edit profile"
+                class="profile__image-edit"
+              />
             </div>
             <div
               class="popup popup_type_change_avatar"
@@ -73,7 +77,7 @@
                   id="popup__button-close-change-avatar"
                 >
                   <img
-                    src="images/close-button.png"
+                    src="../images/close-button.png"
                     alt="button-close_icon"
                     class="popup__button-icon"
                   />
@@ -89,7 +93,7 @@
                   id="profile__bio-open-popup"
                 >
                   <img
-                    src="images/edit-button.png"
+                    src="../images/edit-button.png"
                     alt="Edit button"
                     class="profile__bio-open-icon"
                   />
@@ -140,7 +144,7 @@
                       id="popup__button-close"
                     >
                       <img
-                        src="images/close-button.png"
+                        src="../images/close-button.png"
                         alt="button-close_icon"
                         class="popup__button-icon"
                       />
@@ -153,7 +157,7 @@
           </div>
           <button class="profile__bio-add">
             <img
-              src="images/add-button.png"
+              src="../images/add-button.png"
               alt="Add button"
               class="profile__add-icon"
             />
@@ -199,7 +203,7 @@
                 id="popup__button-close-add"
               >
                 <img
-                  src="images/close-button.png"
+                  src="../images/close-button.png"
                   alt="button-close_icon"
                   class="popup__button-icon"
                 />
@@ -210,11 +214,7 @@
         <section class="cards"></section>
         <div class="popup popup_type_image" id="popup_img">
           <div class="popup__container-image">
-            <img
-              src=""
-              class="popup-picture"
-              alt=""
-            />
+            <img src="" class="popup-picture" alt="" />
             <p class="popup-caption"></p>
             <button
               type="button"
@@ -222,7 +222,7 @@
               id="popup__button-close-img"
             >
               <img
-                src="images/close-button.png"
+                src="../images/close-button.png"
                 alt="button-close_icon"
                 class="popup__button-icon"
               />
@@ -246,7 +246,7 @@
               id="popup__button-close-delete_card"
             >
               <img
-                src="images/close-button.png"
+                src="../images/close-button.png"
                 alt="button-close_icon"
                 class="popup__button-icon"
               />
@@ -263,7 +263,7 @@
         <img src="" alt="" class="card__image" />
         <button class="card__delete-image">
           <img
-            src="images/delete-button.png"
+            src="../images/delete-button.png"
             alt="Delete button icon"
             class="card__delete-image-icon"
           />
@@ -272,7 +272,7 @@
           <p class="card__caption_title"></p>
           <button class="card__caption_like">
             <img
-              src="images/like-button.png"
+              src="../images/like-button.png"
               alt="Like button"
               class="card__caption-like_icon"
             />
@@ -280,6 +280,6 @@
         </div>
       </div>
     </template>
-    <script type="module" src="src/index.js"></script>
+    <script type="module" src="index.js"></script>
   </body>
 </html>
